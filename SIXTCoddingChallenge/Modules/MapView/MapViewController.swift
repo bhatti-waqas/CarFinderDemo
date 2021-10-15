@@ -14,8 +14,8 @@ class MapViewController: UIViewController {
     
     private let ui: MapUI = MapUI()
     private var viewModel: MapViewModel
-    private var onShowAnnotations: AnyCancellable?
-    private var onShowError: AnyCancellable?
+    private var onReady: AnyCancellable?
+    private var onError: AnyCancellable?
     
     public static func create(with viewModel: MapViewModel, embededInNav: Bool = true) -> UIViewController {
         let mapView = MapViewController(with: viewModel)
@@ -42,10 +42,10 @@ class MapViewController: UIViewController {
     }
     
     private func bindViewModel() {
-        onShowAnnotations = viewModel.$onShowAnnotations.sink(receiveValue: { show in
+        onReady = viewModel.$onReady.sink(receiveValue: { show in
             if show { self.reload() }
         })
-        onShowError = viewModel.$onShowError.sink(receiveValue: { error in
+        onError = viewModel.$onError.sink(receiveValue: { error in
             guard let error = error else { return }
             AlertHandler.showError(self, error: error)
         })

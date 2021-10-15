@@ -13,9 +13,8 @@ public class MapViewModel: SIXTViewModel {
     
     var dataStore: SIXTCarDataStoreProtocol
     var cars: [SIXTCar]? = nil
-    //let onShowAnnotations = AnyPublisher<[MKAnnotation]>()
-    @Published var onShowAnnotations: Bool = false
-    @Published var onShowError: NetworkError? = nil
+    @Published var onReady: Bool = false
+    @Published var onError: NetworkError? = nil
     private var cancellable = Set<AnyCancellable>()
     
     init(_ dataStore: SIXTCarDataStoreProtocol) {
@@ -24,29 +23,19 @@ public class MapViewModel: SIXTViewModel {
     
     public override func load() {
         super.load()
-//        dataStore.getCars(success: { cars in
-//            self.cars = cars
-//            self.makeReady()
-//
-//        }, failure: { error in
-//            self.throwError(with: error)
-//        })
-//        var cancellables: Set<AnyCancellable> = []
         dataStore.getCars()
             .sink(receiveCompletion: { completion in
                 switch completion {
                 case .failure(let error ):
                     let netWorkError = error as! NetworkError
-//                    self.throwError(with: netWorkError)
-                    self.onShowError = netWorkError
+                    self.onError = netWorkError
                 case .finished:
                     print("Do nothing")
                 }
                 
             }, receiveValue: { cars in
                 self.cars = cars
-                //self.makeReady()
-                self.onShowAnnotations = true
+                self.onReady = true
             }).store(in: &cancellable)
     }
     

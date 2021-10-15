@@ -27,6 +27,9 @@
 		77287AA8271847C500D737C4 /* MapUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77287AA7271847C500D737C4 /* MapUI.swift */; };
 		77287AAB27184AB100D737C4 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77287AAA27184AB100D737C4 /* Strings.swift */; };
 		77287AB027184DCF00D737C4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 77287AB227184DCF00D737C4 /* Localizable.strings */; };
+		773BDE82271A3522003702AD /* MockDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773BDE81271A3522003702AD /* MockDataStore.swift */; };
+		773BDE85271A3777003702AD /* MapViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773BDE84271A3777003702AD /* MapViewModelTests.swift */; };
+		773BDE87271A41D4003702AD /* MockCarsResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = 773BDE86271A41D4003702AD /* MockCarsResponse.json */; };
 		77C12023271986AC00D50D12 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C12022271986AC00D50D12 /* UIImageView.swift */; };
 		77C120262719874000D50D12 /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C120252719874000D50D12 /* ImageManager.swift */; };
 		77C120292719897700D50D12 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 77C120282719897700D50D12 /* SDWebImage */; };
@@ -98,6 +101,9 @@
 		77287AAC27184CC800D737C4 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		77287AB127184DCF00D737C4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		77287AB327184DD100D737C4 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		773BDE81271A3522003702AD /* MockDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataStore.swift; sourceTree = "<group>"; };
+		773BDE84271A3777003702AD /* MapViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModelTests.swift; sourceTree = "<group>"; };
+		773BDE86271A41D4003702AD /* MockCarsResponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockCarsResponse.json; sourceTree = "<group>"; };
 		77C12022271986AC00D50D12 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		77C120252719874000D50D12 /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
 		77C1202D27198BCB00D50D12 /* MobileAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileAsset.swift; sourceTree = "<group>"; };
@@ -197,6 +203,8 @@
 		77287A702718335400D737C4 /* SIXTCoddingChallengeTests */ = {
 			isa = PBXGroup;
 			children = (
+				773BDE83271A3753003702AD /* ViewModels */,
+				773BDE80271A350D003702AD /* Mock */,
 				77287A712718335400D737C4 /* SIXTCoddingChallengeTests.swift */,
 			);
 			path = SIXTCoddingChallengeTests;
@@ -297,6 +305,23 @@
 				77287AB227184DCF00D737C4 /* Localizable.strings */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		773BDE80271A350D003702AD /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				773BDE81271A3522003702AD /* MockDataStore.swift */,
+				773BDE86271A41D4003702AD /* MockCarsResponse.json */,
+			);
+			path = Mock;
+			sourceTree = "<group>";
+		};
+		773BDE83271A3753003702AD /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				773BDE84271A3777003702AD /* MapViewModelTests.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		77C120242719873200D50D12 /* Managers */ = {
@@ -506,6 +531,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				773BDE87271A41D4003702AD /* MockCarsResponse.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -567,6 +593,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				77287A722718335400D737C4 /* SIXTCoddingChallengeTests.swift in Sources */,
+				773BDE85271A3777003702AD /* MapViewModelTests.swift in Sources */,
+				773BDE82271A3522003702AD /* MockDataStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
