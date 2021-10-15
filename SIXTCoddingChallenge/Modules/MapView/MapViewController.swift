@@ -34,11 +34,11 @@ class MapViewController: UIViewController {
         super.viewDidLoad()
         ui.layout(in: self)
         ui.mapView.delegate = self
-        setupInitialMapState()
         viewModel.load(with: self)
     }
     
     private func reload() {
+        setupInitialMapState()
         self.addAnnotations()
     }
     
@@ -66,8 +66,8 @@ extension MapViewController: SIXTViewModelDelegate {
     }
 }
 //MARK: MapView Delegate
-// MARK: - MapView Delegate
 extension MapViewController: MKMapViewDelegate {
+    
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         guard let carAnnotation = annotation as? CarAnnotation else { return nil }
         let identifier = "CarAnnotation"
@@ -80,7 +80,6 @@ extension MapViewController: MKMapViewDelegate {
             return annotationView
         }
         annotationView.annotation = carAnnotation
-        annotationView.frame.size = CGSize(width: 30, height: 17)
         return annotationView
     }
 }

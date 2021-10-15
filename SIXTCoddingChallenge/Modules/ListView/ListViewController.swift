@@ -32,7 +32,12 @@ class ListViewController: UIViewController {
         super.viewDidLoad()
         ui.layout(in: self)
         ui.activityIndicatorView.isHidden = false
+        ui.tableView.refreshControl?.addTarget(self, action: #selector(refreshList), for: .valueChanged)
         viewModel.load(with: self)
+    }
+    
+    @objc private func refreshList() {
+        viewModel.load()
     }
 }
 
@@ -41,6 +46,7 @@ extension ListViewController: SIXTViewModelDelegate {
     
     func onSIXTViewModelReady(_ viewModel: SIXTViewModel) {
         //configure ui
+        ui.tableView.refreshControl?.endRefreshing()
         ui.activityIndicatorView.isHidden = true
         ui.tableView.dataSource = self
         ui.tableView.reloadData()

@@ -36,9 +36,25 @@ public class MapViewModel: SIXTViewModel {
         return cars?[index]
     }
     
+    private func getSWCoordinates() -> (minLong: Double, maxLong: Double) {
+        guard let cars = cars, cars.count > 0 else { return (0,0) }
+        let miniLong = cars.min(by: { $0.longitude < $1.longitude })?.longitude ?? 0.0
+        let maxLong = cars.max(by: { $0.longitude < $1.longitude })?.longitude ?? 0.0
+        return (miniLong, maxLong)
+    }
+    
+    private func getNECoordinates() -> (minLat: Double, maxLat: Double) {
+        guard let cars = cars, cars.count > 0 else { return (0,0) }
+        let minLat = cars.min(by: { $0.latitude < $1.latitude })?.latitude ?? 0.0
+        let maxLat = cars.max(by: { $0.latitude < $1.latitude })?.latitude ?? 0.0
+        return (minLat, maxLat)
+    }
+    
     // MARK: - Map Coord Helpers
     public func getInitialStateCenterRegion() -> MKCoordinateRegion {
-        let centerPoint = CLLocationCoordinate2DMake((48.134557 + 48.193826)/2, (11.576921 + 11.563875)/2)
+        let swCoordinates = getSWCoordinates()
+        let neECoordinates = getNECoordinates()
+        let centerPoint = CLLocationCoordinate2DMake((neECoordinates.minLat + neECoordinates.maxLat)/2, (swCoordinates.minLong + swCoordinates.maxLong)/2)
         let floatForRadiusInMiles = 10.0 // we can ignore this i have taken this for my custom radius property
         let scalingFactor: Double = abs((cos(2 * Double.pi * centerPoint.latitude / 360.0)))
         let coordinateSpan: MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: floatForRadiusInMiles / 69.0, longitudeDelta: floatForRadiusInMiles / (scalingFactor * 69.0))

@@ -18,6 +18,7 @@ class ListUI: SIXTBaseUI {
         tableView.backgroundColor = .clear
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 30
+        tableView.refreshControl = UIRefreshControl()
         return tableView
     }()
     
