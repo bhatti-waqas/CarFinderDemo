@@ -11,6 +11,7 @@ import UIKit
 public enum MobileAsset: String {
     
     case CarPlaceHolder = "mini"
+    case MapIcon = "mapIcon"
     
     func getImageView() -> UIImageView {
         return self.rawValue.imgView()

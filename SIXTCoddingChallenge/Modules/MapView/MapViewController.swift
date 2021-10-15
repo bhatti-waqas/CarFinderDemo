@@ -8,11 +8,14 @@
 import UIKit
 import MapKit
 import SDWebImageMapKit
+import Combine
 
 class MapViewController: UIViewController {
     
     private let ui: MapUI = MapUI()
     private var viewModel: MapViewModel
+    private var onShowAnnotations: AnyCancellable?
+    private var onShowError: AnyCancellable?
     
     public static func create(with viewModel: MapViewModel, embededInNav: Bool = true) -> UIViewController {
         let mapView = MapViewController(with: viewModel)
@@ -34,7 +37,18 @@ class MapViewController: UIViewController {
         super.viewDidLoad()
         ui.layout(in: self)
         ui.mapView.delegate = self
-        viewModel.load(with: self)
+        viewModel.load()
+        self.bindViewModel()
+    }
+    
+    private func bindViewModel() {
+        onShowAnnotations = viewModel.$onShowAnnotations.sink(receiveValue: { show in
+            if show { self.reload() }
+        })
+        onShowError = viewModel.$onShowError.sink(receiveValue: { error in
+            guard let error = error else { return }
+            AlertHandler.showError(self, error: error)
+        })
     }
     
     private func reload() {
@@ -63,6 +77,8 @@ extension MapViewController: SIXTViewModelDelegate {
     
     func onSIXTViewModelError(_ viewModel: SIXTViewModel, error: NetworkError) {
         //
+        //guard let error = error.element else { return }
+        AlertHandler.showError(self, error: error)
     }
 }
 //MARK: MapView Delegate
@@ -75,7 +91,7 @@ extension MapViewController: MKMapViewDelegate {
             let annotationView = MKPinAnnotationView(annotation: carAnnotation, reuseIdentifier: identifier)
             annotationView.canShowCallout = true
             let imageSize = CGSize(width: 60, height: 34)
-            let placeholderImage = MobileAsset.CarPlaceHolder.getImage().scaledTo(imageSize)
+            let placeholderImage = MobileAsset.CarPlaceHolder.getImage()//.scaledTo(imageSize)
             annotationView.loadImage(withUrlString: carAnnotation.imgUrl, placeholderImage: placeholderImage, size: imageSize)
             return annotationView
         }

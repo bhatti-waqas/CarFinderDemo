@@ -27,13 +27,14 @@ class AppCoordinator: Coordinator {
         let dataStore: SIXTCarDataStoreProtocol = SIXTCarAPIDataStore()
         let listViewModel: ListViewModel = ListViewModel(dataStore)
         let listView = ListViewController.create(viewModel: listViewModel)
-        listView.tabBarItem = UITabBarItem(title: StringKey.Generic.ListTabName.get(), image: nil, tag: 0)
+        let tabImage = MobileAsset.CarPlaceHolder.getImage()
+        listView.tabBarItem = UITabBarItem(title: StringKey.Generic.ListTabName.get(), image: tabImage, selectedImage: tabImage)
         
         //2
         //create data store for viewModel
         let mapViewModel: MapViewModel = MapViewModel(dataStore)
         let mapView = MapViewController.create(with: mapViewModel)
-        mapView.tabBarItem = UITabBarItem(title: StringKey.Generic.MapTabName.get(), image: nil, tag: 0)
+        mapView.tabBarItem = UITabBarItem(title: StringKey.Generic.MapTabName.get(), image: tabImage, selectedImage: tabImage)
         tabBarController.viewControllers = [listView, mapView]
         
     }

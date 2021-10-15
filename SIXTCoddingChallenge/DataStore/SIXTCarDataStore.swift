@@ -6,9 +6,10 @@
 //
 
 import Foundation
+import Combine
 
 protocol SIXTCarDataStoreProtocol {
-    func getCars() -> [SIXTCar]
+    func getCars() ->  AnyPublisher<[SIXTCar], Error>
     func getCars( success: @escaping (_ json: [SIXTCar]?) -> (), failure: @escaping (_ error: NetworkError) -> () )
 }
 
@@ -33,7 +34,15 @@ final class SIXTCarAPIDataStore: SIXTCarDataStoreProtocol {
         }
     }
     
-    func getCars() -> [SIXTCar] {
-        return []
+    func getCars() -> AnyPublisher<[SIXTCar], Error> {
+        Deferred {
+            Future { handler in
+                self.getCars(success: { cars in
+                    handler(.success(cars ?? []))
+                }, failure: { error in
+                    handler(.failure(error))
+                })
+            }
+        }.eraseToAnyPublisher()
     }
 }

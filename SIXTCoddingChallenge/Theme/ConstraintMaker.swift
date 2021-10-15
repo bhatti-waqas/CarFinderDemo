@@ -12,11 +12,7 @@ import UIKit
 extension ConstraintMaker {
     
     func alignToTopSafeArea(viewController: UIViewController, offset: ConstraintOffsetTarget = 0) {
-        if #available(iOS 11.0, *) {
-            self.top.equalTo(viewController.view.safeAreaLayoutGuide.snp.top).offset(offset)
-        } else {
-            self.top.equalTo(viewController.topLayoutGuide.snp.bottom).offset(offset)
-        }
+        self.top.equalTo(viewController.view.safeAreaLayoutGuide.snp.top).offset(offset)
     }
     
     func equalToSuperview(inset:Int = 0) {

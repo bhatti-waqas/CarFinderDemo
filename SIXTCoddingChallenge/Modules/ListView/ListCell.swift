@@ -76,7 +76,8 @@ class ListCell: UITableViewCell {
         carImageView.snp.makeConstraints { make in
             make.trailing.equalToSuperview().inset(10)
             make.top.equalTo(nameLabel)
-            make.width.height.equalTo(50)
+            make.width.equalTo(88)
+            make.height.equalTo(50)
             make.centerY.equalToSuperview()
         }
     }

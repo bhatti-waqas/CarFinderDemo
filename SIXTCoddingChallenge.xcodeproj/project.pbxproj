@@ -36,6 +36,7 @@
 		77C1203227198FE600D50D12 /* ConstraintMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C1203127198FE600D50D12 /* ConstraintMaker.swift */; };
 		77C1203427199CF300D50D12 /* CarAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C1203327199CF300D50D12 /* CarAnnotation.swift */; };
 		77C120362719AAA600D50D12 /* MKAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C120352719AAA600D50D12 /* MKAnnotationView.swift */; };
+		77C120382719CE8400D50D12 /* AleretHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C120372719CE8400D50D12 /* AleretHandler.swift */; };
 		77E318932718B1D700725E8D /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E318922718B1D700725E8D /* ListViewModel.swift */; };
 		77E318962718B23500725E8D /* SIXTCar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E318952718B23500725E8D /* SIXTCar.swift */; };
 		77E318992718B32B00725E8D /* AlamofireNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E318982718B32B00725E8D /* AlamofireNetwork.swift */; };
@@ -104,6 +105,7 @@
 		77C1203127198FE600D50D12 /* ConstraintMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstraintMaker.swift; sourceTree = "<group>"; };
 		77C1203327199CF300D50D12 /* CarAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarAnnotation.swift; sourceTree = "<group>"; };
 		77C120352719AAA600D50D12 /* MKAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKAnnotationView.swift; sourceTree = "<group>"; };
+		77C120372719CE8400D50D12 /* AleretHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AleretHandler.swift; sourceTree = "<group>"; };
 		77E318922718B1D700725E8D /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
 		77E318952718B23500725E8D /* SIXTCar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SIXTCar.swift; sourceTree = "<group>"; };
 		77E318982718B32B00725E8D /* AlamofireNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireNetwork.swift; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 			children = (
 				77287AA42718478F00D737C4 /* MapView */,
 				77287A8E2718348D00D737C4 /* ListView */,
+				77C120372719CE8400D50D12 /* AleretHandler.swift */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -541,6 +544,7 @@
 				77287AAB27184AB100D737C4 /* Strings.swift in Sources */,
 				77287A97271836AC00D737C4 /* ListCell.swift in Sources */,
 				77287A9E27183FCA00D737C4 /* UITableView.swift in Sources */,
+				77C120382719CE8400D50D12 /* AleretHandler.swift in Sources */,
 				77E318992718B32B00725E8D /* AlamofireNetwork.swift in Sources */,
 				77C120262719874000D50D12 /* ImageManager.swift in Sources */,
 				77E318AF2718C1AE00725E8D /* AppConstants.swift in Sources */,
