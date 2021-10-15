@@ -6,5 +6,7 @@
   
 */
 
-"key_list_tab_name" = "List YO";
+"key_list_tab_name" = "List";
 "key_map_tab_name" = "Map";
+"key_name" = "Name: ";
+"key_license_plate" = "License Plate: ";

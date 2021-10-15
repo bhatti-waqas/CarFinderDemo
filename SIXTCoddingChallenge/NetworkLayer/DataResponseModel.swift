@@ -6,3 +6,12 @@
 //
 
 import Foundation
+
+public enum ResultType<T> {
+    case success(T)
+    case failure(NetworkError)
+}
+
+public struct DataResponseModel<T> {
+    public let result:ResultType<T>
+}

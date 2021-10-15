@@ -5,4 +5,7 @@
 //  Created by Waqas Naseem on 10/15/21.
 //
 
-import Foundation
+
+struct APIURLs {
+    static let baseURL = "https://cdn.sixt.io/codingtask/cars"
+}

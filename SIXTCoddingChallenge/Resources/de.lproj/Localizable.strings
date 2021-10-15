@@ -8,3 +8,5 @@
 
 "key_list_tab_name" = "Aufführen";
 "key_map_tab_name" = "Karte";
+"key_name" = "Name: ";
+"key_license_plate" = "License Plate: ";

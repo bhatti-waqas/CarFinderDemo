@@ -6,10 +6,31 @@
 //
 
 import UIKit
+import SnapKit
 
 class ListCell: UITableViewCell {
     
-    lazy var titleLabel: UILabel = {
+    lazy var nameTitleLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .black
+        label.text = StringKey.Generic.Name.get()
+        return label
+    }()
+    
+    lazy var nameLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .black
+        return label
+    }()
+    
+    lazy var licensePlateTitleLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .black
+        label.text = StringKey.Generic.LicensePlate.get()
+        return label
+    }()
+    
+    lazy var licensePlateLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
         return label
@@ -19,16 +40,43 @@ class ListCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         backgroundColor = .white
         selectionStyle = .none
-        contentView.addSubview(titleLabel)
+        contentView.addSubview(nameTitleLabel)
+        contentView.addSubview(nameLabel)
+        contentView.addSubview(licensePlateTitleLabel)
+        contentView.addSubview(licensePlateLabel)
         
-        titleLabel.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(16)
-            make.top.bottom.equalToSuperview().inset(10)
+        nameTitleLabel.snp.makeConstraints { make in
+            make.leading.equalToSuperview().inset(16)
+            make.top.equalToSuperview().inset(10)
+//            make.bottom.equalToSuperview().inset(10)
+        }
+        
+        nameLabel.snp.makeConstraints { make in
+            make.leading.equalTo(nameTitleLabel.snp.trailing).offset(5)
+            make.top.equalToSuperview().inset(10)
+//            make.bottom.equalToSuperview().inset(10)
+        }
+        
+        licensePlateTitleLabel.snp.makeConstraints { make in
+            make.leading.equalToSuperview().inset(16)
+            make.top.equalTo(nameLabel.snp.bottom).offset(10)
+            make.bottom.equalToSuperview().inset(10)
+        }
+        
+        licensePlateLabel.snp.makeConstraints { make in
+            make.leading.equalTo(licensePlateTitleLabel.snp.trailing).offset(5)
+            make.top.equalTo(licensePlateTitleLabel)
+            make.bottom.equalToSuperview().inset(10)
         }
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    public func configure(with car: SIXTCar) {
+        nameLabel.text = car.name
+        licensePlateLabel.text = car.licensePlate
     }
 
 }
