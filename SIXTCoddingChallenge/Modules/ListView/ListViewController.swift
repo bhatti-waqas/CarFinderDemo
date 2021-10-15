@@ -68,9 +68,3 @@ extension ListViewController: UITableViewDataSource {
         return cell
     }
 }
-
-extension ListViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
-    }
-}

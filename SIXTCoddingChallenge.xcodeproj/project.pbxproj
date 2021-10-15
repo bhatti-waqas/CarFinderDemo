@@ -27,6 +27,15 @@
 		77287AA8271847C500D737C4 /* MapUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77287AA7271847C500D737C4 /* MapUI.swift */; };
 		77287AAB27184AB100D737C4 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77287AAA27184AB100D737C4 /* Strings.swift */; };
 		77287AB027184DCF00D737C4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 77287AB227184DCF00D737C4 /* Localizable.strings */; };
+		77C12023271986AC00D50D12 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C12022271986AC00D50D12 /* UIImageView.swift */; };
+		77C120262719874000D50D12 /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C120252719874000D50D12 /* ImageManager.swift */; };
+		77C120292719897700D50D12 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 77C120282719897700D50D12 /* SDWebImage */; };
+		77C1202B2719897700D50D12 /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 77C1202A2719897700D50D12 /* SDWebImageMapKit */; };
+		77C1202E27198BCB00D50D12 /* MobileAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C1202D27198BCB00D50D12 /* MobileAsset.swift */; };
+		77C1203027198E2800D50D12 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C1202F27198E2800D50D12 /* MapViewModel.swift */; };
+		77C1203227198FE600D50D12 /* ConstraintMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C1203127198FE600D50D12 /* ConstraintMaker.swift */; };
+		77C1203427199CF300D50D12 /* CarAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C1203327199CF300D50D12 /* CarAnnotation.swift */; };
+		77C120362719AAA600D50D12 /* MKAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C120352719AAA600D50D12 /* MKAnnotationView.swift */; };
 		77E318932718B1D700725E8D /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E318922718B1D700725E8D /* ListViewModel.swift */; };
 		77E318962718B23500725E8D /* SIXTCar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E318952718B23500725E8D /* SIXTCar.swift */; };
 		77E318992718B32B00725E8D /* AlamofireNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E318982718B32B00725E8D /* AlamofireNetwork.swift */; };
@@ -88,6 +97,13 @@
 		77287AAC27184CC800D737C4 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		77287AB127184DCF00D737C4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		77287AB327184DD100D737C4 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		77C12022271986AC00D50D12 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
+		77C120252719874000D50D12 /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
+		77C1202D27198BCB00D50D12 /* MobileAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileAsset.swift; sourceTree = "<group>"; };
+		77C1202F27198E2800D50D12 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
+		77C1203127198FE600D50D12 /* ConstraintMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstraintMaker.swift; sourceTree = "<group>"; };
+		77C1203327199CF300D50D12 /* CarAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarAnnotation.swift; sourceTree = "<group>"; };
+		77C120352719AAA600D50D12 /* MKAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKAnnotationView.swift; sourceTree = "<group>"; };
 		77E318922718B1D700725E8D /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
 		77E318952718B23500725E8D /* SIXTCar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SIXTCar.swift; sourceTree = "<group>"; };
 		77E318982718B32B00725E8D /* AlamofireNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireNetwork.swift; sourceTree = "<group>"; };
@@ -110,7 +126,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77C120292719897700D50D12 /* SDWebImage in Frameworks */,
 				77287A9A2718371C00D737C4 /* SnapKit in Frameworks */,
+				77C1202B2719897700D50D12 /* SDWebImageMapKit in Frameworks */,
 				77E3189C2718B37A00725E8D /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -225,6 +243,7 @@
 			isa = PBXGroup;
 			children = (
 				77287A922718358900D737C4 /* SIXTBaseUI.swift */,
+				77C1203127198FE600D50D12 /* ConstraintMaker.swift */,
 			);
 			path = Theme;
 			sourceTree = "<group>";
@@ -234,6 +253,8 @@
 			children = (
 				77287A9D27183FCA00D737C4 /* UITableView.swift */,
 				77287A9F27183FF300D737C4 /* UITableViewCell.swift */,
+				77C12022271986AC00D50D12 /* UIImageView.swift */,
+				77C120352719AAA600D50D12 /* MKAnnotationView.swift */,
 			);
 			path = UIExtensions;
 			sourceTree = "<group>";
@@ -252,6 +273,8 @@
 			children = (
 				77287AA52718479B00D737C4 /* MapViewController.swift */,
 				77287AA7271847C500D737C4 /* MapUI.swift */,
+				77C1202F27198E2800D50D12 /* MapViewModel.swift */,
+				77C1203327199CF300D50D12 /* CarAnnotation.swift */,
 			);
 			path = MapView;
 			sourceTree = "<group>";
@@ -271,6 +294,22 @@
 				77287AB227184DCF00D737C4 /* Localizable.strings */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		77C120242719873200D50D12 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				77C120252719874000D50D12 /* ImageManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		77C1202C27198B7C00D50D12 /* AssetHelper */ = {
+			isa = PBXGroup;
+			children = (
+				77C1202D27198BCB00D50D12 /* MobileAsset.swift */,
+			);
+			path = AssetHelper;
 			sourceTree = "<group>";
 		};
 		77E318902718B18200725E8D /* Assets */ = {
@@ -330,6 +369,8 @@
 		77E318B52718C3E000725E8D /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				77C1202C27198B7C00D50D12 /* AssetHelper */,
+				77C120242719873200D50D12 /* Managers */,
 				77E318B62718C3F300725E8D /* Utils.swift */,
 				77E318B82718C42900725E8D /* TypeAliases.swift */,
 			);
@@ -355,6 +396,8 @@
 			packageProductDependencies = (
 				77287A992718371C00D737C4 /* SnapKit */,
 				77E3189B2718B37A00725E8D /* Alamofire */,
+				77C120282719897700D50D12 /* SDWebImage */,
+				77C1202A2719897700D50D12 /* SDWebImageMapKit */,
 			);
 			productName = SIXTCoddingChallenge;
 			productReference = 77287A572718335200D737C4 /* SIXTCoddingChallenge.app */;
@@ -432,6 +475,7 @@
 			packageReferences = (
 				77287A982718371C00D737C4 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				77E3189A2718B37A00725E8D /* XCRemoteSwiftPackageReference "Alamofire" */,
+				77C120272719897700D50D12 /* XCRemoteSwiftPackageReference "SDWebImage" */,
 			);
 			productRefGroup = 77287A582718335200D737C4 /* Products */;
 			projectDirPath = "";
@@ -479,11 +523,13 @@
 				77E3189E2718B3A600725E8D /* TranslationLayer.swift in Sources */,
 				77287AA62718479B00D737C4 /* MapViewController.swift in Sources */,
 				77E318A22718B43F00725E8D /* Int.swift in Sources */,
+				77C12023271986AC00D50D12 /* UIImageView.swift in Sources */,
 				77E318B72718C3F300725E8D /* Utils.swift in Sources */,
 				77E318A02718B3E900725E8D /* CustomDataRequest.swift in Sources */,
 				77287AA027183FF300D737C4 /* UITableViewCell.swift in Sources */,
 				77E318932718B1D700725E8D /* ListViewModel.swift in Sources */,
 				77E318AD2718B7F600725E8D /* SIXTCarDataStore.swift in Sources */,
+				77C1203427199CF300D50D12 /* CarAnnotation.swift in Sources */,
 				77287A95271835CA00D737C4 /* ListUI.swift in Sources */,
 				77287AA32718402F00D737C4 /* String.swift in Sources */,
 				77287A932718358900D737C4 /* SIXTBaseUI.swift in Sources */,
@@ -496,13 +542,18 @@
 				77287A97271836AC00D737C4 /* ListCell.swift in Sources */,
 				77287A9E27183FCA00D737C4 /* UITableView.swift in Sources */,
 				77E318992718B32B00725E8D /* AlamofireNetwork.swift in Sources */,
+				77C120262719874000D50D12 /* ImageManager.swift in Sources */,
 				77E318AF2718C1AE00725E8D /* AppConstants.swift in Sources */,
+				77C1203027198E2800D50D12 /* MapViewModel.swift in Sources */,
 				77287A902718350300D737C4 /* ListViewController.swift in Sources */,
 				77E318AA2718B54900725E8D /* JsonTranslation.swift in Sources */,
+				77C1203227198FE600D50D12 /* ConstraintMaker.swift in Sources */,
+				77C120362719AAA600D50D12 /* MKAnnotationView.swift in Sources */,
 				77287AA8271847C500D737C4 /* MapUI.swift in Sources */,
 				77287A5D2718335200D737C4 /* SceneDelegate.swift in Sources */,
 				77E318B92718C42900725E8D /* TypeAliases.swift in Sources */,
 				77E318B42718C34000725E8D /* SIXTBaseViewModel.swift in Sources */,
+				77C1202E27198BCB00D50D12 /* MobileAsset.swift in Sources */,
 				77E318962718B23500725E8D /* SIXTCar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -873,6 +924,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		77C120272719897700D50D12 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		77E3189A2718B37A00725E8D /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -888,6 +947,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 77287A982718371C00D737C4 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		77C120282719897700D50D12 /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 77C120272719897700D50D12 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
+		77C1202A2719897700D50D12 /* SDWebImageMapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 77C120272719897700D50D12 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImageMapKit;
 		};
 		77E3189B2718B37A00725E8D /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;

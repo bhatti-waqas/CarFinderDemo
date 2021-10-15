@@ -7,11 +7,6 @@
 
 import UIKit
 
-enum TabName: String {
-    case List
-    case Map
-}
-
 protocol Coordinator {
     var tabBarController: UITabBarController { get set } //this is our root controlller
     func start()
@@ -36,9 +31,8 @@ class AppCoordinator: Coordinator {
         
         //2
         //create data store for viewModel
-//        let poiDataStore: PoiDataStoreProtocol = PoiAPIDataStore()
-//        let mapViewModel: MapViewModel = MapViewModel(poiDataStore)
-        let mapView = MapViewController.create()
+        let mapViewModel: MapViewModel = MapViewModel(dataStore)
+        let mapView = MapViewController.create(with: mapViewModel)
         mapView.tabBarItem = UITabBarItem(title: StringKey.Generic.MapTabName.get(), image: nil, tag: 0)
         tabBarController.viewControllers = [listView, mapView]
         

@@ -36,6 +36,11 @@ class ListCell: UITableViewCell {
         return label
     }()
     
+    lazy var carImageView: UIImageView = {
+        let imgView = UIImageView()
+        return imgView
+    }()
+    
     public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         backgroundColor = .white
@@ -44,17 +49,16 @@ class ListCell: UITableViewCell {
         contentView.addSubview(nameLabel)
         contentView.addSubview(licensePlateTitleLabel)
         contentView.addSubview(licensePlateLabel)
+        contentView.addSubview(carImageView)
         
         nameTitleLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(16)
             make.top.equalToSuperview().inset(10)
-//            make.bottom.equalToSuperview().inset(10)
         }
         
         nameLabel.snp.makeConstraints { make in
             make.leading.equalTo(nameTitleLabel.snp.trailing).offset(5)
             make.top.equalToSuperview().inset(10)
-//            make.bottom.equalToSuperview().inset(10)
         }
         
         licensePlateTitleLabel.snp.makeConstraints { make in
@@ -68,6 +72,13 @@ class ListCell: UITableViewCell {
             make.top.equalTo(licensePlateTitleLabel)
             make.bottom.equalToSuperview().inset(10)
         }
+        
+        carImageView.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().inset(10)
+            make.top.equalTo(nameLabel)
+            make.width.height.equalTo(50)
+            make.centerY.equalToSuperview()
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -77,6 +88,8 @@ class ListCell: UITableViewCell {
     public func configure(with car: SIXTCar) {
         nameLabel.text = car.name
         licensePlateLabel.text = car.licensePlate
+        let placeHodlerImage = MobileAsset.CarPlaceHolder.getImage()
+        carImageView.loadImage(withUrlString: car.carImageUrl, placeholderImage: placeHodlerImage)
     }
 
 }
