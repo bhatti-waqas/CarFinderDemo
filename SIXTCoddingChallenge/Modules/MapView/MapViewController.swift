@@ -14,8 +14,7 @@ class MapViewController: UIViewController {
     
     private let ui: MapUI = MapUI()
     private var viewModel: MapViewModel
-    private var onReady: AnyCancellable?
-    private var onError: AnyCancellable?
+    private var cancellable: [AnyCancellable] = []
     
     public static func create(with viewModel: MapViewModel, embededInNav: Bool = true) -> UIViewController {
         let mapView = MapViewController(with: viewModel)
@@ -42,21 +41,26 @@ class MapViewController: UIViewController {
     }
     
     private func bindViewModel() {
-        onReady = viewModel.$onReady.sink(receiveValue: { show in
-            if show { self.reload() }
-        })
-        onError = viewModel.$onError.sink(receiveValue: { error in
-            guard let error = error else { return }
+        viewModel.stateDidUpdate.sink(receiveValue: { [unowned self] state in
+            self.render(_state: state)
+        }).store(in: &cancellable)
+    }
+    
+    private func render(_state: SIXTViewModelState) {
+        switch _state {
+        case .ready:
+            self.reload()
+        case .error(let error):
             AlertHandler.showError(self, error: error)
-        })
+        }
     }
     
     private func reload() {
-        setupInitialMapState()
+        setupInitialMapRegion()
         self.addAnnotations()
     }
     
-    private func setupInitialMapState() {
+    private func setupInitialMapRegion() {
         let coordinateRegion = viewModel.getInitialStateCenterRegion()
         ui.mapView.setRegion(coordinateRegion, animated: true)
         ui.mapView.regionThatFits(coordinateRegion)
@@ -68,19 +72,7 @@ class MapViewController: UIViewController {
         ui.mapView.addAnnotations(annotations)
     }
 }
-//MARK: ViewModel Delegate
-extension MapViewController: SIXTViewModelDelegate {
-    func onSIXTViewModelReady(_ viewModel: SIXTViewModel) {
-        //add annotations on map
-        self.reload()
-    }
-    
-    func onSIXTViewModelError(_ viewModel: SIXTViewModel, error: NetworkError) {
-        //
-        //guard let error = error.element else { return }
-        AlertHandler.showError(self, error: error)
-    }
-}
+
 //MARK: MapView Delegate
 extension MapViewController: MKMapViewDelegate {
     

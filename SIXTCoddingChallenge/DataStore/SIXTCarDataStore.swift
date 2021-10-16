@@ -36,11 +36,11 @@ final class SIXTCarAPIDataStore: SIXTCarDataStoreProtocol {
     
     func getCars() -> AnyPublisher<[SIXTCar], Error> {
         Deferred {
-            Future { handler in
+            Future { promise in
                 self.getCars(success: { cars in
-                    handler(.success(cars ?? []))
+                    promise(.success(cars ?? []))
                 }, failure: { error in
-                    handler(.failure(error))
+                    promise(.failure(error))
                 })
             }
         }.eraseToAnyPublisher()

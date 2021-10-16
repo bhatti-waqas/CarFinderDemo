@@ -29,9 +29,7 @@ final class MockDataStore: SIXTCarDataStoreProtocol {
     }
     
     func getCars(success: @escaping ([SIXTCar]?) -> (), failure: @escaping (NetworkError) -> ()) {
-        //
-//        let path = Bundle(for: type(of: self)).path(forResource: localJSONFile, ofType: "json")!
-//        let data = NSData(contentsOfFile: path)! as Data
+        
     }
     
     private func getMockResponse() -> [SIXTCar] {

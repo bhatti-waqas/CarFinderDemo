@@ -9,12 +9,15 @@ import Foundation
 import MapKit
 import Combine
 
+
 public class MapViewModel: SIXTViewModel {
     
     var dataStore: SIXTCarDataStoreProtocol
     var cars: [SIXTCar]? = nil
-    @Published var onReady: Bool = false
-    @Published var onError: NetworkError? = nil
+    
+    /// define immutable `stateDidUpdate` property so that subscriber can only read from it.
+    private (set) lazy var stateDidUpdate = stateDidUpdateSubject.eraseToAnyPublisher()
+    private let stateDidUpdateSubject = PassthroughSubject<SIXTViewModelState, Never>()
     private var cancellable = Set<AnyCancellable>()
     
     init(_ dataStore: SIXTCarDataStoreProtocol) {
@@ -28,14 +31,13 @@ public class MapViewModel: SIXTViewModel {
                 switch completion {
                 case .failure(let error ):
                     let netWorkError = error as! NetworkError
-                    self.onError = netWorkError
+                    self.stateDidUpdateSubject.send(.error(error: netWorkError))
                 case .finished:
                     print("Do nothing")
                 }
-                
             }, receiveValue: { cars in
                 self.cars = cars
-                self.onReady = true
+                self.stateDidUpdateSubject.send(.ready)
             }).store(in: &cancellable)
     }
     
@@ -74,7 +76,6 @@ public class MapViewModel: SIXTViewModel {
     
     /// Create annotations from Cars
     public func getAnnotations() -> [CarAnnotation] {
-        //guard self.isReady(false) else { return [] }
         var annotations: [CarAnnotation] = []
         guard let cars = self.cars else{ return [] }
         for car in cars {

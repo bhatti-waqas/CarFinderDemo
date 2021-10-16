@@ -6,6 +6,12 @@
 //
 
 import Foundation
+import Combine
+
+enum SIXTViewModelState {
+    case ready
+    case error(error: NetworkError)
+}
 
 public class SIXTViewModel {
     
