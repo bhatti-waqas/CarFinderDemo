@@ -6,21 +6,19 @@
 //
 
 import UIKit
+import Combine
 
 class ListViewController: UIViewController {
     
-    private let ui: ListUI = ListUI()
     private var viewModel: ListViewModel
+    private var rootView: ListView
+    private lazy var dataSource = makeDataSource()
+    private var cancellable: [AnyCancellable] = []
     
-    public static func create(viewModel: ListViewModel, embededInNav: Bool = true) -> UIViewController {
-        let listView = ListViewController(with: viewModel)
-        guard embededInNav else { return listView }
-        listView.title = StringKey.Generic.ListTabName.get()
-        return UINavigationController(rootViewController: listView)
-    }
     
-    init(with viewModel: ListViewModel) {
+    init(with viewModel: ListViewModel, rootView: ListView) {
         self.viewModel = viewModel
+        self.rootView = rootView
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -28,12 +26,43 @@ class ListViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func loadView() {
+        self.view = rootView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        ui.layout(in: self)
-        ui.activityIndicatorView.isHidden = false
-        ui.tableView.refreshControl?.addTarget(self, action: #selector(refreshList), for: .valueChanged)
-        viewModel.load(with: self)
+        configureUI()
+        bindViewModel()
+        viewModel.load()
+    }
+    
+    private func configureUI() {
+        rootView.backgroundColor = .white
+        rootView.spinner.startAnimating()
+        rootView.tableView.refreshControl?.addTarget(self, action: #selector(refreshList), for: .valueChanged)
+        rootView.tableView.dataSource = dataSource
+    }
+    
+    private func bindViewModel() {
+        viewModel.stateDidUpdate.sink(receiveValue: { [unowned self] state in
+            self.render(_state: state)
+        }).store(in: &cancellable)
+    }
+    
+    private func render(_state: ListViewModelState) {
+        switch _state {
+        case .show(let cars):
+            self.showList(with: cars)
+        case .error(let error):
+            AlertHandler.showError(self, error: error)
+        }
+    }
+    
+    private func showList(with cars: [ListCellViewModel]) {
+        rootView.tableView.refreshControl?.endRefreshing()
+        rootView.spinner.stopAnimating()
+        self.update(with: cars)
     }
     
     @objc private func refreshList() {
@@ -41,36 +70,28 @@ class ListViewController: UIViewController {
     }
 }
 
-//MARK: ViewModel Delegates
-extension ListViewController: SIXTViewModelDelegate {
-    
-    func onSIXTViewModelReady(_ viewModel: SIXTViewModel) {
-        //configure ui
-        ui.tableView.refreshControl?.endRefreshing()
-        ui.activityIndicatorView.isHidden = true
-        ui.tableView.dataSource = self
-        ui.tableView.reloadData()
-    }
-    func onSIXTViewModelError(_ viewModel: SIXTViewModel, error: NetworkError) {
-        //throw wrror
-    }
-}
-
-//MARK: TableView DataSource
-extension ListViewController: UITableViewDataSource {
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+//MARK: Diffacble Datasource
+fileprivate extension ListViewController {
+    enum Section: CaseIterable {
+        case cars
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.getNumberOfCars()
+    private func makeDataSource() -> UITableViewDiffableDataSource<Section, ListCellViewModel> {
+        return UITableViewDiffableDataSource(
+            tableView: rootView.tableView,
+            cellProvider: {  tableView, indexPath, listCellViewModel in
+                let cell: ListCell = self.rootView.tableView.dequeue(for: indexPath)
+                cell.configure(with: listCellViewModel)
+                return cell
+            })
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: ListCell = tableView.dequeue(for: indexPath)
-        guard let car = viewModel.getCar(at: indexPath.row) else { return cell }
-        cell.configure(with: car)
-        return cell
+    private func update(with cars: [ListCellViewModel], animate: Bool = false) {
+        Run.onMainThread {
+            var snapshot = NSDiffableDataSourceSnapshot<Section, ListCellViewModel>()
+            snapshot.appendSections(Section.allCases)
+            snapshot.appendItems(cars, toSection: .cars)
+            self.dataSource.apply(snapshot, animatingDifferences: animate)
+        }
     }
 }

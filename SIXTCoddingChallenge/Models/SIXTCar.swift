@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class SIXTCar: Decodable {
+struct SIXTCar: Decodable {
     
     public var id: String
     public var modelIdentifier: String
@@ -26,3 +26,15 @@ public class SIXTCar: Decodable {
     public var innerCleanliness: String
     public var carImageUrl: String
 }
+
+extension SIXTCar: Hashable {
+    
+    static func == (lhs: SIXTCar, rhs: SIXTCar) -> Bool {
+        lhs.id == rhs.id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+}
+

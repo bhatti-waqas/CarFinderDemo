@@ -45,7 +45,7 @@ public class MapViewModel: SIXTViewModel {
         return cars?.count ?? 0
     }
     
-    public func getCar(at index: Int) -> SIXTCar? {
+    func getCar(at index: Int) -> SIXTCar? {
         return cars?[index]
     }
     

@@ -6,32 +6,39 @@
 //
 
 import Foundation
+import Combine
 
-public class ListViewModel: SIXTViewModel {
+/// define all states
+enum ListViewModelState {
+    case show([ListCellViewModel])
+    case error(NetworkError)
+}
+
+public class ListViewModel {
     
     var dataStore: SIXTCarDataStoreProtocol
     var cars: [SIXTCar]? = nil
+    /// define immutable `stateDidUpdate` property so that subscriber can only read from it.
+    private(set) lazy var stateDidUpdate = stateDidUpdateSubject.eraseToAnyPublisher()
+    private let stateDidUpdateSubject = PassthroughSubject<ListViewModelState,Never>()
     
     init(_ dataStore: SIXTCarDataStoreProtocol) {
         self.dataStore = dataStore
     }
     
-    public override func load() {
-        super.load()
-        dataStore.getCars(success: { cars in
-            self.cars = cars
-            self.makeReady()
+    public func load() {
+        dataStore.getCars(success: { [weak self ] cars in
+            guard let self = self else { return }
+            let listCellViewModels = cars.map(self.makeListCellViewModel(with:))
+            self.stateDidUpdateSubject.send(.show(listCellViewModels))
             
         }, failure: { error in
-            self.throwError(with: error)
+            self.stateDidUpdateSubject.send(.error(error))
         })
     }
     
-    public func getNumberOfCars() -> Int {
-        return cars?.count ?? 0
-    }
-    
-    public func getCar(at index: Int) -> SIXTCar? {
-        return cars?[index]
+    //MARK: Private methods
+    private func makeListCellViewModel(with car: SIXTCar) -> ListCellViewModel {
+        .init(id: car.id, name: car.name, licensePlate: car.licensePlate, carImageUrl: car.carImageUrl)
     }
 }

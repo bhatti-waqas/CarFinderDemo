@@ -23,19 +23,19 @@ class AppCoordinator: Coordinator {
     func start() {
         //create all tabs to show
         //1
-        //create data store for viewModel // Dependency Injection
-        let dataStore: SIXTCarDataStoreProtocol = SIXTCarAPIDataStore()
-        let listViewModel: ListViewModel = ListViewModel(dataStore)
-        let listView = ListViewController.create(viewModel: listViewModel)
-        let tabImage = MobileAsset.CarPlaceHolder.getImage()
-        listView.tabBarItem = UITabBarItem(title: StringKey.Generic.ListTabName.get(), image: tabImage, selectedImage: tabImage)
+        let listViewControllerFactory = ListViewControllerFactory()
+        let listViewController = listViewControllerFactory.createListViewController(embeddedInNavigation: true)
+        
+        
         
         //2
         //create data store for viewModel
+        let dataStore: SIXTCarDataStoreProtocol = SIXTCarAPIDataStore()
         let mapViewModel: MapViewModel = MapViewModel(dataStore)
         let mapView = MapViewController.create(with: mapViewModel)
+        let tabImage = MobileAsset.CarPlaceHolder.getImage()
         mapView.tabBarItem = UITabBarItem(title: StringKey.Generic.MapTabName.get(), image: tabImage, selectedImage: tabImage)
-        tabBarController.viewControllers = [listView, mapView]
+        tabBarController.viewControllers = [listViewController, mapView]
         
     }
 }

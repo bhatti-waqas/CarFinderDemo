@@ -10,7 +10,7 @@ import Combine
 
 protocol SIXTCarDataStoreProtocol {
     func getCars() ->  AnyPublisher<[SIXTCar], Error>
-    func getCars( success: @escaping (_ json: [SIXTCar]?) -> (), failure: @escaping (_ error: NetworkError) -> () )
+    func getCars( success: @escaping (_ json: [SIXTCar]) -> (), failure: @escaping (_ error: NetworkError) -> () )
 }
 
 final class SIXTCarAPIDataStore: SIXTCarDataStoreProtocol {
@@ -19,11 +19,9 @@ final class SIXTCarAPIDataStore: SIXTCarDataStoreProtocol {
     let baseUrl: String = APIURLs.baseURL
     let translation: TranslationLayer = JSONTranslation()
     
-    func getCars(success: @escaping ([SIXTCar]?) -> (), failure: @escaping (NetworkError) -> ()) {
+    func getCars(success: @escaping ([SIXTCar]) -> (), failure: @escaping (NetworkError) -> ()) {
         
         let dataRequest = CustomDataRequest(url: baseUrl)
-        
-        
         network.requestObject(dataRequest) { (response:DataResponseModel<[SIXTCar]>) in
             switch response.result {
             case .success(let responseModel):
@@ -38,7 +36,7 @@ final class SIXTCarAPIDataStore: SIXTCarDataStoreProtocol {
         Deferred {
             Future { promise in
                 self.getCars(success: { cars in
-                    promise(.success(cars ?? []))
+                    promise(.success(cars))
                 }, failure: { error in
                     promise(.failure(error))
                 })

@@ -30,6 +30,10 @@
 		773BDE82271A3522003702AD /* MockDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773BDE81271A3522003702AD /* MockDataStore.swift */; };
 		773BDE85271A3777003702AD /* MapViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773BDE84271A3777003702AD /* MapViewModelTests.swift */; };
 		773BDE87271A41D4003702AD /* MockCarsResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = 773BDE86271A41D4003702AD /* MockCarsResponse.json */; };
+		777C1517271C6CA8001E40F2 /* ListViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777C1516271C6CA8001E40F2 /* ListViewControllerFactory.swift */; };
+		777C1519271C6D83001E40F2 /* MapViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777C1518271C6D83001E40F2 /* MapViewControllerFactory.swift */; };
+		777C151B271CB5EB001E40F2 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777C151A271CB5EB001E40F2 /* ListView.swift */; };
+		777C151E271CC175001E40F2 /* ListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777C151D271CC175001E40F2 /* ListCellViewModel.swift */; };
 		77C12023271986AC00D50D12 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C12022271986AC00D50D12 /* UIImageView.swift */; };
 		77C120262719874000D50D12 /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C120252719874000D50D12 /* ImageManager.swift */; };
 		77C120292719897700D50D12 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 77C120282719897700D50D12 /* SDWebImage */; };
@@ -104,6 +108,10 @@
 		773BDE81271A3522003702AD /* MockDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataStore.swift; sourceTree = "<group>"; };
 		773BDE84271A3777003702AD /* MapViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModelTests.swift; sourceTree = "<group>"; };
 		773BDE86271A41D4003702AD /* MockCarsResponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockCarsResponse.json; sourceTree = "<group>"; };
+		777C1516271C6CA8001E40F2 /* ListViewControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewControllerFactory.swift; sourceTree = "<group>"; };
+		777C1518271C6D83001E40F2 /* MapViewControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewControllerFactory.swift; sourceTree = "<group>"; };
+		777C151A271CB5EB001E40F2 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
+		777C151D271CC175001E40F2 /* ListCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCellViewModel.swift; sourceTree = "<group>"; };
 		77C12022271986AC00D50D12 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		77C120252719874000D50D12 /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
 		77C1202D27198BCB00D50D12 /* MobileAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileAsset.swift; sourceTree = "<group>"; };
@@ -242,10 +250,12 @@
 		77287A8E2718348D00D737C4 /* ListView */ = {
 			isa = PBXGroup;
 			children = (
+				777C151C271CC154001E40F2 /* Cell */,
 				77E318912718B1AA00725E8D /* ListViewModel */,
 				77287A8F2718350300D737C4 /* ListViewController.swift */,
 				77287A94271835CA00D737C4 /* ListUI.swift */,
-				77287A96271836AC00D737C4 /* ListCell.swift */,
+				777C1516271C6CA8001E40F2 /* ListViewControllerFactory.swift */,
+				777C151A271CB5EB001E40F2 /* ListView.swift */,
 			);
 			path = ListView;
 			sourceTree = "<group>";
@@ -286,6 +296,7 @@
 				77287AA7271847C500D737C4 /* MapUI.swift */,
 				77C1202F27198E2800D50D12 /* MapViewModel.swift */,
 				77C1203327199CF300D50D12 /* CarAnnotation.swift */,
+				777C1518271C6D83001E40F2 /* MapViewControllerFactory.swift */,
 			);
 			path = MapView;
 			sourceTree = "<group>";
@@ -322,6 +333,15 @@
 				773BDE84271A3777003702AD /* MapViewModelTests.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		777C151C271CC154001E40F2 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				77287A96271836AC00D737C4 /* ListCell.swift */,
+				777C151D271CC175001E40F2 /* ListCellViewModel.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		77C120242719873200D50D12 /* Managers */ = {
@@ -563,6 +583,7 @@
 				77287AA32718402F00D737C4 /* String.swift in Sources */,
 				77287A932718358900D737C4 /* SIXTBaseUI.swift in Sources */,
 				77E318A82718B4BD00725E8D /* NetworkError.swift in Sources */,
+				777C151B271CB5EB001E40F2 /* ListView.swift in Sources */,
 				77E318A62718B49C00725E8D /* DataResponseModel.swift in Sources */,
 				77287A8C2718341600D737C4 /* AppCoordinator.swift in Sources */,
 				77287A5B2718335200D737C4 /* AppDelegate.swift in Sources */,
@@ -574,10 +595,13 @@
 				77E318992718B32B00725E8D /* AlamofireNetwork.swift in Sources */,
 				77C120262719874000D50D12 /* ImageManager.swift in Sources */,
 				77E318AF2718C1AE00725E8D /* AppConstants.swift in Sources */,
+				777C151E271CC175001E40F2 /* ListCellViewModel.swift in Sources */,
 				77C1203027198E2800D50D12 /* MapViewModel.swift in Sources */,
+				777C1519271C6D83001E40F2 /* MapViewControllerFactory.swift in Sources */,
 				77287A902718350300D737C4 /* ListViewController.swift in Sources */,
 				77E318AA2718B54900725E8D /* JsonTranslation.swift in Sources */,
 				77C1203227198FE600D50D12 /* ConstraintMaker.swift in Sources */,
+				777C1517271C6CA8001E40F2 /* ListViewControllerFactory.swift in Sources */,
 				77C120362719AAA600D50D12 /* MKAnnotationView.swift in Sources */,
 				77287AA8271847C500D737C4 /* MapUI.swift in Sources */,
 				77287A5D2718335200D737C4 /* SceneDelegate.swift in Sources */,

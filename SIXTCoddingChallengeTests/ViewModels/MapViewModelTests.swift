@@ -27,7 +27,6 @@ class MapViewModelTests: XCTestCase {
             XCTAssertTrue(viewModel.getNumberOfCars() > 0 , "Cars count shouldn't be zero.")
             promise.fulfill()
         }).store(in: &cancellable)
-        
         //When
         viewModel.load()
         wait(for: [promise], timeout: 10)
