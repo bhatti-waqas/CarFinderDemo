@@ -9,7 +9,6 @@ import Foundation
 import Combine
 
 protocol SIXTCarDataStoreProtocol {
-    func getCars() ->  AnyPublisher<[SIXTCar], Error>
     func getCars( success: @escaping (_ json: [SIXTCar]) -> (), failure: @escaping (_ error: NetworkError) -> () )
 }
 
@@ -30,17 +29,5 @@ final class SIXTCarAPIDataStore: SIXTCarDataStoreProtocol {
                 failure(error)
             }
         }
-    }
-    
-    func getCars() -> AnyPublisher<[SIXTCar], Error> {
-        Deferred {
-            Future { promise in
-                self.getCars(success: { cars in
-                    promise(.success(cars))
-                }, failure: { error in
-                    promise(.failure(error))
-                })
-            }
-        }.eraseToAnyPublisher()
     }
 }

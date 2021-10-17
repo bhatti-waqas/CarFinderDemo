@@ -9,36 +9,33 @@ import Foundation
 import MapKit
 import Combine
 
+enum MapViewModelState {
+    case ready
+    case error(error: NetworkError)
+}
 
-public class MapViewModel: SIXTViewModel {
+public class MapViewModel {
     
     var dataStore: SIXTCarDataStoreProtocol
     var cars: [SIXTCar]? = nil
     
     /// define immutable `stateDidUpdate` property so that subscriber can only read from it.
     private (set) lazy var stateDidUpdate = stateDidUpdateSubject.eraseToAnyPublisher()
-    private let stateDidUpdateSubject = PassthroughSubject<SIXTViewModelState, Never>()
+    private let stateDidUpdateSubject = PassthroughSubject<MapViewModelState, Never>()
     private var cancellable = Set<AnyCancellable>()
     
     init(_ dataStore: SIXTCarDataStoreProtocol) {
         self.dataStore = dataStore
     }
     
-    public override func load() {
-        super.load()
-        dataStore.getCars()
-            .sink(receiveCompletion: { completion in
-                switch completion {
-                case .failure(let error ):
-                    let netWorkError = error as! NetworkError
-                    self.stateDidUpdateSubject.send(.error(error: netWorkError))
-                case .finished:
-                    print("Do nothing")
-                }
-            }, receiveValue: { cars in
-                self.cars = cars
-                self.stateDidUpdateSubject.send(.ready)
-            }).store(in: &cancellable)
+    public func load() {
+        dataStore.getCars(success: { [weak self ] cars in
+            guard let self = self else { return }
+            self.cars = cars
+            self.stateDidUpdateSubject.send(.ready)
+        }, failure: { error in
+            self.stateDidUpdateSubject.send(.error(error: error))
+        })
     }
     
     public func getNumberOfCars() -> Int {
@@ -85,5 +82,4 @@ public class MapViewModel: SIXTViewModel {
         }
         return annotations
     }
-
 }

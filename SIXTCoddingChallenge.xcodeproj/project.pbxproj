@@ -32,7 +32,6 @@
 		777C151B271CB5EB001E40F2 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777C151A271CB5EB001E40F2 /* ListView.swift */; };
 		777C151E271CC175001E40F2 /* ListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777C151D271CC175001E40F2 /* ListCellViewModel.swift */; };
 		77C12023271986AC00D50D12 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C12022271986AC00D50D12 /* UIImageView.swift */; };
-		77C120262719874000D50D12 /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C120252719874000D50D12 /* ImageManager.swift */; };
 		77C120292719897700D50D12 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 77C120282719897700D50D12 /* SDWebImage */; };
 		77C1202B2719897700D50D12 /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 77C1202A2719897700D50D12 /* SDWebImageMapKit */; };
 		77C1202E27198BCB00D50D12 /* MobileAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C1202D27198BCB00D50D12 /* MobileAsset.swift */; };
@@ -55,7 +54,6 @@
 		77E318AA2718B54900725E8D /* JsonTranslation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E318A92718B54900725E8D /* JsonTranslation.swift */; };
 		77E318AD2718B7F600725E8D /* SIXTCarDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E318AC2718B7F600725E8D /* SIXTCarDataStore.swift */; };
 		77E318AF2718C1AE00725E8D /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E318AE2718C1AE00725E8D /* AppConstants.swift */; };
-		77E318B42718C34000725E8D /* SIXTBaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E318B32718C34000725E8D /* SIXTBaseViewModel.swift */; };
 		77E318B72718C3F300725E8D /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E318B62718C3F300725E8D /* Utils.swift */; };
 		77E318B92718C42900725E8D /* TypeAliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E318B82718C42900725E8D /* TypeAliases.swift */; };
 /* End PBXBuildFile section */
@@ -108,7 +106,6 @@
 		777C151A271CB5EB001E40F2 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		777C151D271CC175001E40F2 /* ListCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCellViewModel.swift; sourceTree = "<group>"; };
 		77C12022271986AC00D50D12 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
-		77C120252719874000D50D12 /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
 		77C1202D27198BCB00D50D12 /* MobileAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileAsset.swift; sourceTree = "<group>"; };
 		77C1202F27198E2800D50D12 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		77C1203127198FE600D50D12 /* ConstraintMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstraintMaker.swift; sourceTree = "<group>"; };
@@ -128,7 +125,6 @@
 		77E318A92718B54900725E8D /* JsonTranslation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonTranslation.swift; sourceTree = "<group>"; };
 		77E318AC2718B7F600725E8D /* SIXTCarDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SIXTCarDataStore.swift; sourceTree = "<group>"; };
 		77E318AE2718C1AE00725E8D /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
-		77E318B32718C34000725E8D /* SIXTBaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SIXTBaseViewModel.swift; sourceTree = "<group>"; };
 		77E318B62718C3F300725E8D /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		77E318B82718C42900725E8D /* TypeAliases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeAliases.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -186,7 +182,6 @@
 			isa = PBXGroup;
 			children = (
 				77E318B52718C3E000725E8D /* Utils */,
-				77E318B22718C33300725E8D /* ViewModels */,
 				77E318AB2718B7DA00725E8D /* DataStore */,
 				77E318972718B31B00725E8D /* NetworkLayer */,
 				77E318942718B1F900725E8D /* Models */,
@@ -338,14 +333,6 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
-		77C120242719873200D50D12 /* Managers */ = {
-			isa = PBXGroup;
-			children = (
-				77C120252719874000D50D12 /* ImageManager.swift */,
-			);
-			path = Managers;
-			sourceTree = "<group>";
-		};
 		77C1202C27198B7C00D50D12 /* AssetHelper */ = {
 			isa = PBXGroup;
 			children = (
@@ -400,19 +387,10 @@
 			path = DataStore;
 			sourceTree = "<group>";
 		};
-		77E318B22718C33300725E8D /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				77E318B32718C34000725E8D /* SIXTBaseViewModel.swift */,
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
 		77E318B52718C3E000725E8D /* Utils */ = {
 			isa = PBXGroup;
 			children = (
 				77C1202C27198B7C00D50D12 /* AssetHelper */,
-				77C120242719873200D50D12 /* Managers */,
 				77E318B62718C3F300725E8D /* Utils.swift */,
 				77E318B82718C42900725E8D /* TypeAliases.swift */,
 			);
@@ -586,7 +564,6 @@
 				77287A9E27183FCA00D737C4 /* UITableView.swift in Sources */,
 				77C120382719CE8400D50D12 /* AleretHandler.swift in Sources */,
 				77E318992718B32B00725E8D /* AlamofireNetwork.swift in Sources */,
-				77C120262719874000D50D12 /* ImageManager.swift in Sources */,
 				77E318AF2718C1AE00725E8D /* AppConstants.swift in Sources */,
 				777C151E271CC175001E40F2 /* ListCellViewModel.swift in Sources */,
 				77C1203027198E2800D50D12 /* MapViewModel.swift in Sources */,
@@ -598,7 +575,6 @@
 				77C120362719AAA600D50D12 /* MKAnnotationView.swift in Sources */,
 				77287A5D2718335200D737C4 /* SceneDelegate.swift in Sources */,
 				77E318B92718C42900725E8D /* TypeAliases.swift in Sources */,
-				77E318B42718C34000725E8D /* SIXTBaseViewModel.swift in Sources */,
 				77C1202E27198BCB00D50D12 /* MobileAsset.swift in Sources */,
 				77E318962718B23500725E8D /* SIXTCar.swift in Sources */,
 			);

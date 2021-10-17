@@ -50,7 +50,7 @@ class MapViewController: UIViewController {
         }).store(in: &cancellable)
     }
     
-    private func render(_state: SIXTViewModelState) {
+    private func render(_state: MapViewModelState) {
         switch _state {
         case .ready:
             self.reload()
