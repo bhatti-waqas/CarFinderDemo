@@ -1,5 +1,5 @@
 //
-//  ListView.swift
+//  MapView.swift
 //  SIXTCoddingChallenge
 //
 //  Created by Waqas Naseem on 10/18/21.
@@ -7,25 +7,19 @@
 
 import UIKit
 import SnapKit
+import MapKit
 
-public class ListView: UIView {
+class MapView: UIView  {
     
-    public let tableView: UITableView = {
-        let tableView = UITableView()
-        tableView.separatorStyle = .none
-        tableView.showsHorizontalScrollIndicator = false
-        tableView.showsVerticalScrollIndicator = false
-        tableView.backgroundColor = .clear
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 30
-        tableView.refreshControl = UIRefreshControl()
-        return tableView
+    lazy var contentView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        return view
     }()
     
-    public let activityIndicatorView: UIView = {
-        let view = UIView()
-        view.isHidden = true
-        return view
+    lazy var mapView: MKMapView = {
+        let map = MKMapView()
+        return map
     }()
     
     public let spinner: UIActivityIndicatorView = {
@@ -48,14 +42,18 @@ public class ListView: UIView {
     }
     
     private func addSubviews() {
-        [tableView, spinner].forEach(addSubview)
-        tableView.register(cell: ListCell.self)
+        addSubview(contentView)
+        contentView.addSubview(mapView)
+        contentView.addSubview(spinner)
     }
     
     private func setupConstraints() {
-        tableView.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(10)
-            make.top.equalToSuperview().offset(50)
+        contentView.snp.makeConstraints { make in
+            make.leading.trailing.top.bottom.equalToSuperview()
+        }
+        mapView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(80)
+            make.leading.trailing.equalToSuperview()
             make.bottom.equalToSuperview()
         }
         spinner.snp.makeConstraints { make in

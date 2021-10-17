@@ -16,15 +16,12 @@
 		77287A7E2718335400D737C4 /* SIXTCoddingChallengeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77287A7D2718335400D737C4 /* SIXTCoddingChallengeUITestsLaunchTests.swift */; };
 		77287A8C2718341600D737C4 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77287A8B2718341600D737C4 /* AppCoordinator.swift */; };
 		77287A902718350300D737C4 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77287A8F2718350300D737C4 /* ListViewController.swift */; };
-		77287A932718358900D737C4 /* SIXTBaseUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77287A922718358900D737C4 /* SIXTBaseUI.swift */; };
-		77287A95271835CA00D737C4 /* ListUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77287A94271835CA00D737C4 /* ListUI.swift */; };
 		77287A97271836AC00D737C4 /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77287A96271836AC00D737C4 /* ListCell.swift */; };
 		77287A9A2718371C00D737C4 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 77287A992718371C00D737C4 /* SnapKit */; };
 		77287A9E27183FCA00D737C4 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77287A9D27183FCA00D737C4 /* UITableView.swift */; };
 		77287AA027183FF300D737C4 /* UITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77287A9F27183FF300D737C4 /* UITableViewCell.swift */; };
 		77287AA32718402F00D737C4 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77287AA22718402F00D737C4 /* String.swift */; };
 		77287AA62718479B00D737C4 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77287AA52718479B00D737C4 /* MapViewController.swift */; };
-		77287AA8271847C500D737C4 /* MapUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77287AA7271847C500D737C4 /* MapUI.swift */; };
 		77287AAB27184AB100D737C4 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77287AAA27184AB100D737C4 /* Strings.swift */; };
 		77287AB027184DCF00D737C4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 77287AB227184DCF00D737C4 /* Localizable.strings */; };
 		773BDE82271A3522003702AD /* MockDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773BDE81271A3522003702AD /* MockDataStore.swift */; };
@@ -44,6 +41,7 @@
 		77C1203427199CF300D50D12 /* CarAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C1203327199CF300D50D12 /* CarAnnotation.swift */; };
 		77C120362719AAA600D50D12 /* MKAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C120352719AAA600D50D12 /* MKAnnotationView.swift */; };
 		77C120382719CE8400D50D12 /* AleretHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C120372719CE8400D50D12 /* AleretHandler.swift */; };
+		77CEF3F8271CD7E900B9897E /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CEF3F7271CD7E900B9897E /* MapView.swift */; };
 		77E318932718B1D700725E8D /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E318922718B1D700725E8D /* ListViewModel.swift */; };
 		77E318962718B23500725E8D /* SIXTCar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E318952718B23500725E8D /* SIXTCar.swift */; };
 		77E318992718B32B00725E8D /* AlamofireNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E318982718B32B00725E8D /* AlamofireNetwork.swift */; };
@@ -93,14 +91,11 @@
 		77287A7D2718335400D737C4 /* SIXTCoddingChallengeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SIXTCoddingChallengeUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		77287A8B2718341600D737C4 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		77287A8F2718350300D737C4 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
-		77287A922718358900D737C4 /* SIXTBaseUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SIXTBaseUI.swift; sourceTree = "<group>"; };
-		77287A94271835CA00D737C4 /* ListUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListUI.swift; sourceTree = "<group>"; };
 		77287A96271836AC00D737C4 /* ListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
 		77287A9D27183FCA00D737C4 /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		77287A9F27183FF300D737C4 /* UITableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewCell.swift; sourceTree = "<group>"; };
 		77287AA22718402F00D737C4 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		77287AA52718479B00D737C4 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		77287AA7271847C500D737C4 /* MapUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapUI.swift; sourceTree = "<group>"; };
 		77287AAA27184AB100D737C4 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		77287AAC27184CC800D737C4 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		77287AB127184DCF00D737C4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -120,6 +115,7 @@
 		77C1203327199CF300D50D12 /* CarAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarAnnotation.swift; sourceTree = "<group>"; };
 		77C120352719AAA600D50D12 /* MKAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKAnnotationView.swift; sourceTree = "<group>"; };
 		77C120372719CE8400D50D12 /* AleretHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AleretHandler.swift; sourceTree = "<group>"; };
+		77CEF3F7271CD7E900B9897E /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		77E318922718B1D700725E8D /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
 		77E318952718B23500725E8D /* SIXTCar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SIXTCar.swift; sourceTree = "<group>"; };
 		77E318982718B32B00725E8D /* AlamofireNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireNetwork.swift; sourceTree = "<group>"; };
@@ -253,7 +249,6 @@
 				777C151C271CC154001E40F2 /* Cell */,
 				77E318912718B1AA00725E8D /* ListViewModel */,
 				77287A8F2718350300D737C4 /* ListViewController.swift */,
-				77287A94271835CA00D737C4 /* ListUI.swift */,
 				777C1516271C6CA8001E40F2 /* ListViewControllerFactory.swift */,
 				777C151A271CB5EB001E40F2 /* ListView.swift */,
 			);
@@ -263,7 +258,6 @@
 		77287A912718357700D737C4 /* Theme */ = {
 			isa = PBXGroup;
 			children = (
-				77287A922718358900D737C4 /* SIXTBaseUI.swift */,
 				77C1203127198FE600D50D12 /* ConstraintMaker.swift */,
 			);
 			path = Theme;
@@ -293,10 +287,10 @@
 			isa = PBXGroup;
 			children = (
 				77287AA52718479B00D737C4 /* MapViewController.swift */,
-				77287AA7271847C500D737C4 /* MapUI.swift */,
 				77C1202F27198E2800D50D12 /* MapViewModel.swift */,
 				77C1203327199CF300D50D12 /* CarAnnotation.swift */,
 				777C1518271C6D83001E40F2 /* MapViewControllerFactory.swift */,
+				77CEF3F7271CD7E900B9897E /* MapView.swift */,
 			);
 			path = MapView;
 			sourceTree = "<group>";
@@ -579,14 +573,13 @@
 				77E318932718B1D700725E8D /* ListViewModel.swift in Sources */,
 				77E318AD2718B7F600725E8D /* SIXTCarDataStore.swift in Sources */,
 				77C1203427199CF300D50D12 /* CarAnnotation.swift in Sources */,
-				77287A95271835CA00D737C4 /* ListUI.swift in Sources */,
 				77287AA32718402F00D737C4 /* String.swift in Sources */,
-				77287A932718358900D737C4 /* SIXTBaseUI.swift in Sources */,
 				77E318A82718B4BD00725E8D /* NetworkError.swift in Sources */,
 				777C151B271CB5EB001E40F2 /* ListView.swift in Sources */,
 				77E318A62718B49C00725E8D /* DataResponseModel.swift in Sources */,
 				77287A8C2718341600D737C4 /* AppCoordinator.swift in Sources */,
 				77287A5B2718335200D737C4 /* AppDelegate.swift in Sources */,
+				77CEF3F8271CD7E900B9897E /* MapView.swift in Sources */,
 				77E318A42718B47300725E8D /* Networking.swift in Sources */,
 				77287AAB27184AB100D737C4 /* Strings.swift in Sources */,
 				77287A97271836AC00D737C4 /* ListCell.swift in Sources */,
@@ -603,7 +596,6 @@
 				77C1203227198FE600D50D12 /* ConstraintMaker.swift in Sources */,
 				777C1517271C6CA8001E40F2 /* ListViewControllerFactory.swift in Sources */,
 				77C120362719AAA600D50D12 /* MKAnnotationView.swift in Sources */,
-				77287AA8271847C500D737C4 /* MapUI.swift in Sources */,
 				77287A5D2718335200D737C4 /* SceneDelegate.swift in Sources */,
 				77E318B92718C42900725E8D /* TypeAliases.swift in Sources */,
 				77E318B42718C34000725E8D /* SIXTBaseViewModel.swift in Sources */,

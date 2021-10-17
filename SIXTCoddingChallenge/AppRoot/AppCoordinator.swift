@@ -23,19 +23,9 @@ class AppCoordinator: Coordinator {
     func start() {
         //create all tabs to show
         //1
-        let listViewControllerFactory = ListViewControllerFactory()
-        let listViewController = listViewControllerFactory.createListViewController(embeddedInNavigation: true)
-        
-        
-        
+        let listViewController = ListViewControllerFactory.createListViewController()
         //2
-        //create data store for viewModel
-        let dataStore: SIXTCarDataStoreProtocol = SIXTCarAPIDataStore()
-        let mapViewModel: MapViewModel = MapViewModel(dataStore)
-        let mapView = MapViewController.create(with: mapViewModel)
-        let tabImage = MobileAsset.CarPlaceHolder.getImage()
-        mapView.tabBarItem = UITabBarItem(title: StringKey.Generic.MapTabName.get(), image: tabImage, selectedImage: tabImage)
-        tabBarController.viewControllers = [listViewController, mapView]
-        
+        let mapViewController = MapViewControllerFactory.createMapViewController()
+        tabBarController.viewControllers = [listViewController, mapViewController]
     }
 }

@@ -7,24 +7,17 @@
 
 import UIKit
 import MapKit
-import SDWebImageMapKit
 import Combine
 
 class MapViewController: UIViewController {
     
-    private let ui: MapUI = MapUI()
+    private var rootView: MapView
     private var viewModel: MapViewModel
     private var cancellable: [AnyCancellable] = []
-    
-    public static func create(with viewModel: MapViewModel, embededInNav: Bool = true) -> UIViewController {
-        let mapView = MapViewController(with: viewModel)
-        guard embededInNav else { return mapView }
-        mapView.title = StringKey.Generic.MapTabName.get()
-        return UINavigationController(rootViewController: mapView)
-    }
-    
-    init(with viewModel: MapViewModel) {
+        
+    init(with viewModel: MapViewModel, rootView: MapView) {
         self.viewModel = viewModel
+        self.rootView = rootView
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -32,12 +25,23 @@ class MapViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func loadView() {
+        super.loadView()
+        self.view = rootView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        ui.layout(in: self)
-        ui.mapView.delegate = self
+        configureUI()
         viewModel.load()
         self.bindViewModel()
+    }
+    
+    //MARK: Private Methods
+    private func configureUI() {
+        rootView.spinner.startAnimating()
+        rootView.backgroundColor = .white
+        rootView.mapView.delegate = self
     }
     
     private func bindViewModel() {
@@ -56,20 +60,20 @@ class MapViewController: UIViewController {
     }
     
     private func reload() {
+        rootView.spinner.stopAnimating()
         setupInitialMapRegion()
         self.addAnnotations()
     }
     
     private func setupInitialMapRegion() {
         let coordinateRegion = viewModel.getInitialStateCenterRegion()
-        ui.mapView.setRegion(coordinateRegion, animated: true)
-        ui.mapView.regionThatFits(coordinateRegion)
+        rootView.mapView.setRegion(coordinateRegion, animated: true)
+        rootView.mapView.regionThatFits(coordinateRegion)
     }
     
     private func addAnnotations() {
         let annotations = viewModel.getAnnotations()
-        ui.mapView.removeAnnotations(ui.mapView.annotations)
-        ui.mapView.addAnnotations(annotations)
+        rootView.mapView.addAnnotations(annotations)
     }
 }
 
@@ -83,7 +87,7 @@ extension MapViewController: MKMapViewDelegate {
             let annotationView = MKPinAnnotationView(annotation: carAnnotation, reuseIdentifier: identifier)
             annotationView.canShowCallout = true
             let imageSize = CGSize(width: 60, height: 34)
-            let placeholderImage = MobileAsset.CarPlaceHolder.getImage()//.scaledTo(imageSize)
+            let placeholderImage = MobileAsset.CarPlaceHolder.getImage()
             annotationView.loadImage(withUrlString: carAnnotation.imgUrl, placeholderImage: placeholderImage, size: imageSize)
             return annotationView
         }
