@@ -33,6 +33,7 @@
 		777C151E271CC175001E40F2 /* ListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777C151D271CC175001E40F2 /* ListCellViewModel.swift */; };
 		77C01F5A271D6E8E00100F69 /* AppServiceLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C01F59271D6E8E00100F69 /* AppServiceLoader.swift */; };
 		77C01F5D271D6EF400100F69 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 77C01F5C271D6EF400100F69 /* Swinject */; };
+		77C01F5F271D915400100F69 /* ListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C01F5E271D915400100F69 /* ListViewModelTests.swift */; };
 		77C12023271986AC00D50D12 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C12022271986AC00D50D12 /* UIImageView.swift */; };
 		77C120292719897700D50D12 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 77C120282719897700D50D12 /* SDWebImage */; };
 		77C1202B2719897700D50D12 /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 77C1202A2719897700D50D12 /* SDWebImageMapKit */; };
@@ -108,6 +109,7 @@
 		777C151A271CB5EB001E40F2 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		777C151D271CC175001E40F2 /* ListCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCellViewModel.swift; sourceTree = "<group>"; };
 		77C01F59271D6E8E00100F69 /* AppServiceLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppServiceLoader.swift; sourceTree = "<group>"; };
+		77C01F5E271D915400100F69 /* ListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModelTests.swift; sourceTree = "<group>"; };
 		77C12022271986AC00D50D12 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		77C1202D27198BCB00D50D12 /* MobileAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileAsset.swift; sourceTree = "<group>"; };
 		77C1202F27198E2800D50D12 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
@@ -325,6 +327,7 @@
 			isa = PBXGroup;
 			children = (
 				773BDE84271A3777003702AD /* MapViewModelTests.swift */,
+				77C01F5E271D915400100F69 /* ListViewModelTests.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -594,6 +597,7 @@
 			files = (
 				77287A722718335400D737C4 /* SIXTCoddingChallengeTests.swift in Sources */,
 				773BDE85271A3777003702AD /* MapViewModelTests.swift in Sources */,
+				77C01F5F271D915400100F69 /* ListViewModelTests.swift in Sources */,
 				773BDE82271A3522003702AD /* MockDataStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
