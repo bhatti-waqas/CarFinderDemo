@@ -17,6 +17,7 @@ final class ListViewControllerFactory {
     }
     
     func createListViewController(embeddedInNavigation: Bool = true) -> UIViewController {
+        
         let listViewModel: ListViewModel = ListViewModel(dataStore)
         let listView: ListView = ListView()
         let viewController = ListViewController(with: listViewModel, rootView: listView)
