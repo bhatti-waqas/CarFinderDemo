@@ -11,42 +11,16 @@ import Combine
 
 final class MockDataStore: SIXTCarDataStoreProtocol {
     
-    var getCarsResult: ResultType<[SIXTCar]>?
-        
-    func getCars() -> AnyPublisher<[SIXTCar], Error> {
-        Deferred {
-            Future { handler in
-                switch self.getCarsResult {
-                case .success(_)?:
-                    handler(.success(self.getMockResponse()))
-                case .failure(let error)?:
-                    handler(.failure(error))
-                case .none:
-                    handler(.failure(NetworkError.RequestFailed))
-                }
-            }
-        }.eraseToAnyPublisher()
-    }
+    var getCarsResult: ResultType<[SIXTCar]> = .failure(NetworkError.IncorrectDataReturned)
     
-    func getCars(success: @escaping ([SIXTCar]?) -> (), failure: @escaping (NetworkError) -> ()) {
-        
+    func getCars(success: @escaping ([SIXTCar]) -> (), failure: @escaping (NetworkError) -> ()) {
+        switch getCarsResult {
+        case .success(let cars):
+            success(cars)
+        case .failure(let error):
+            failure(error)
+        }
     }
-    
-    private func getMockResponse() -> [SIXTCar] {
-        let path = Bundle(for: type(of: self)).path(forResource: "MockCarsResponse", ofType: "json")!
-        let data = NSData(contentsOfFile: path)! as Data
-        let json = try! JSONDecoder().decode([SIXTCar].self, from: data)
-        return json
-    }
-    
 }
 
-//final class MockDataStoreViewModelLoad: PoiDataStoreProtocol {
-//    var isLoadMethodCalled: Bool = false
-//
-//    func getPois(with nePoint: Coordinate, swPoint: Coordinate) -> Observable<[POI]> {
-//        isLoadMethodCalled = true
-//        return .empty()
-//    }
-//}
 

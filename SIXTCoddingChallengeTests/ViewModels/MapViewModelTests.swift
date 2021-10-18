@@ -16,7 +16,7 @@ class MapViewModelTests: XCTestCase {
     // Test successfully  looading of Cars
     func testLoadCarsSuccessfully() {
         let dataStore = MockDataStore()
-        dataStore.getCarsResult = .success([])
+        dataStore.getCarsResult = .success(getMockCarResponse())
         let viewModel = MapViewModel(dataStore)
         
         // 1
@@ -35,7 +35,7 @@ class MapViewModelTests: XCTestCase {
     
     func testViewDidLoad_whenFetchingSuccessful_shouldHaveReadyState() throws {
         let dataStore = MockDataStore()
-        dataStore.getCarsResult = .success([])
+        dataStore.getCarsResult = .success(getMockCarResponse())
         let viewModel = MapViewModel(dataStore)
         var readySateTriggered: Bool = false
         
@@ -64,5 +64,13 @@ class MapViewModelTests: XCTestCase {
         viewModel.load()
         // Then
         XCTAssertTrue(errorSateTriggered)
+    }
+}
+
+extension MapViewModelTests {
+    
+    private func getMockCarResponse() -> [SIXTCar] {
+        let sixtCar = SIXTCar(id: "WMWSW31030T222518", modelIdentifier: "mini", modelName: "MINI", name: "Vanessa", make: "BMW", group: "MINI", color: "midnight_black", series: "MINI", fuelType: "D", fuelLevel: 0.7, transmission: "M", licensePlate: "VO0259", latitude: 48.134557, longitude: 11.576921, innerCleanliness: "REGULAR", carImageUrl: "https://cdn.sixt.io/codingtask/images/mini.png")
+        return [sixtCar]
     }
 }
