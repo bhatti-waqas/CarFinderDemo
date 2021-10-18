@@ -55,7 +55,7 @@ class ListViewController: UIViewController {
         case .show(let cars):
             self.showList(with: cars)
         case .error(let error):
-            AlertHandler.showError(self, error: error)
+            handleError(with: error)
         }
     }
     
@@ -63,6 +63,12 @@ class ListViewController: UIViewController {
         rootView.tableView.refreshControl?.endRefreshing()
         rootView.spinner.stopAnimating()
         self.update(with: cars)
+    }
+    
+    private func handleError(with error: NetworkError) {
+        rootView.tableView.refreshControl?.endRefreshing()
+        rootView.spinner.stopAnimating()
+        AlertHandler.showError(self, error: error)
     }
     
     @objc private func refreshList() {

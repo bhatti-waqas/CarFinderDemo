@@ -23,9 +23,11 @@ class AppCoordinator: Coordinator {
     func start() {
         //create all tabs to show
         //1
-        let listViewController = ListViewControllerFactory.createListViewController()
+        let listFactory = ServiceLocator.listViewControllerFactory()
+        let listViewController = listFactory.createListViewController()
         //2
-        let mapViewController = MapViewControllerFactory.createMapViewController()
+        let mapFactory = ServiceLocator.mapViewControllerFactory()
+        let mapViewController = mapFactory.createMapViewController()
         tabBarController.viewControllers = [listViewController, mapViewController]
     }
 }

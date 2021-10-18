@@ -9,8 +9,13 @@ import UIKit
 
 final class MapViewControllerFactory {
     
-    static func createMapViewController(embeddedInNavigation: Bool = true) -> UIViewController {
-        let dataStore: SIXTCarDataStoreProtocol = SIXTCarAPIDataStore()
+    private let dataStore: SIXTCarDataStoreProtocol
+    
+    init(dataStore: SIXTCarDataStoreProtocol){
+        self.dataStore = dataStore
+    }
+    
+    func createMapViewController(embeddedInNavigation: Bool = true) -> UIViewController {
         let viewModel: MapViewModel = MapViewModel(dataStore)
         let mapView: MapView = MapView()
         let viewController = MapViewController(with: viewModel, rootView: mapView)

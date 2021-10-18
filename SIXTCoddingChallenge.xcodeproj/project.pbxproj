@@ -31,6 +31,8 @@
 		777C1519271C6D83001E40F2 /* MapViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777C1518271C6D83001E40F2 /* MapViewControllerFactory.swift */; };
 		777C151B271CB5EB001E40F2 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777C151A271CB5EB001E40F2 /* ListView.swift */; };
 		777C151E271CC175001E40F2 /* ListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777C151D271CC175001E40F2 /* ListCellViewModel.swift */; };
+		77C01F5A271D6E8E00100F69 /* AppServiceLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C01F59271D6E8E00100F69 /* AppServiceLoader.swift */; };
+		77C01F5D271D6EF400100F69 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 77C01F5C271D6EF400100F69 /* Swinject */; };
 		77C12023271986AC00D50D12 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C12022271986AC00D50D12 /* UIImageView.swift */; };
 		77C120292719897700D50D12 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 77C120282719897700D50D12 /* SDWebImage */; };
 		77C1202B2719897700D50D12 /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 77C1202A2719897700D50D12 /* SDWebImageMapKit */; };
@@ -105,6 +107,7 @@
 		777C1518271C6D83001E40F2 /* MapViewControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewControllerFactory.swift; sourceTree = "<group>"; };
 		777C151A271CB5EB001E40F2 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		777C151D271CC175001E40F2 /* ListCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCellViewModel.swift; sourceTree = "<group>"; };
+		77C01F59271D6E8E00100F69 /* AppServiceLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppServiceLoader.swift; sourceTree = "<group>"; };
 		77C12022271986AC00D50D12 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		77C1202D27198BCB00D50D12 /* MobileAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileAsset.swift; sourceTree = "<group>"; };
 		77C1202F27198E2800D50D12 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
@@ -135,6 +138,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				77C120292719897700D50D12 /* SDWebImage in Frameworks */,
+				77C01F5D271D6EF400100F69 /* Swinject in Frameworks */,
 				77287A9A2718371C00D737C4 /* SnapKit in Frameworks */,
 				77C1202B2719897700D50D12 /* SDWebImageMapKit in Frameworks */,
 				77E3189C2718B37A00725E8D /* Alamofire in Frameworks */,
@@ -224,6 +228,7 @@
 				77287A5C2718335200D737C4 /* SceneDelegate.swift */,
 				77287A5A2718335200D737C4 /* AppDelegate.swift */,
 				77287A8B2718341600D737C4 /* AppCoordinator.swift */,
+				77C01F59271D6E8E00100F69 /* AppServiceLoader.swift */,
 			);
 			path = AppRoot;
 			sourceTree = "<group>";
@@ -418,6 +423,7 @@
 				77E3189B2718B37A00725E8D /* Alamofire */,
 				77C120282719897700D50D12 /* SDWebImage */,
 				77C1202A2719897700D50D12 /* SDWebImageMapKit */,
+				77C01F5C271D6EF400100F69 /* Swinject */,
 			);
 			productName = SIXTCoddingChallenge;
 			productReference = 77287A572718335200D737C4 /* SIXTCoddingChallenge.app */;
@@ -496,6 +502,7 @@
 				77287A982718371C00D737C4 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				77E3189A2718B37A00725E8D /* XCRemoteSwiftPackageReference "Alamofire" */,
 				77C120272719897700D50D12 /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				77C01F5B271D6EF400100F69 /* XCRemoteSwiftPackageReference "Swinject" */,
 			);
 			productRefGroup = 77287A582718335200D737C4 /* Products */;
 			projectDirPath = "";
@@ -550,6 +557,7 @@
 				77287AA027183FF300D737C4 /* UITableViewCell.swift in Sources */,
 				77E318932718B1D700725E8D /* ListViewModel.swift in Sources */,
 				77E318AD2718B7F600725E8D /* SIXTCarDataStore.swift in Sources */,
+				77C01F5A271D6E8E00100F69 /* AppServiceLoader.swift in Sources */,
 				77C1203427199CF300D50D12 /* CarAnnotation.swift in Sources */,
 				77287AA32718402F00D737C4 /* String.swift in Sources */,
 				77E318A82718B4BD00725E8D /* NetworkError.swift in Sources */,
@@ -948,6 +956,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		77C01F5B271D6EF400100F69 /* XCRemoteSwiftPackageReference "Swinject" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Swinject/Swinject.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		77C120272719897700D50D12 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
@@ -971,6 +987,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 77287A982718371C00D737C4 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		77C01F5C271D6EF400100F69 /* Swinject */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 77C01F5B271D6EF400100F69 /* XCRemoteSwiftPackageReference "Swinject" */;
+			productName = Swinject;
 		};
 		77C120282719897700D50D12 /* SDWebImage */ = {
 			isa = XCSwiftPackageProductDependency;

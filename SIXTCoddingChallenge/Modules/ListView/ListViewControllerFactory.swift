@@ -10,8 +10,13 @@ import UIKit
 
 final class ListViewControllerFactory {
     
-    static func createListViewController(embeddedInNavigation: Bool = true) -> UIViewController {
-        let dataStore: SIXTCarDataStoreProtocol = SIXTCarAPIDataStore()
+    private let dataStore: SIXTCarDataStoreProtocol
+    
+    init(dataStore: SIXTCarDataStoreProtocol) {
+        self.dataStore = dataStore
+    }
+    
+    func createListViewController(embeddedInNavigation: Bool = true) -> UIViewController {
         let listViewModel: ListViewModel = ListViewModel(dataStore)
         let listView: ListView = ListView()
         let viewController = ListViewController(with: listViewModel, rootView: listView)

@@ -55,6 +55,7 @@ class MapViewController: UIViewController {
         case .ready:
             self.reload()
         case .error(let error):
+            rootView.spinner.stopAnimating()
             AlertHandler.showError(self, error: error)
         }
     }
