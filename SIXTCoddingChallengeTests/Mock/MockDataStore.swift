@@ -13,7 +13,7 @@ final class MockDataStore: SIXTCarDataStoreProtocol {
     
     var getCarsResult: ResultType<[SIXTCar]> = .failure(NetworkError.IncorrectDataReturned)
     
-    func getCars(success: @escaping ([SIXTCar]) -> (), failure: @escaping (NetworkError) -> ()) {
+    func fetchCars(success: @escaping ([SIXTCar]) -> (), failure: @escaping (NetworkError) -> ()) {
         switch getCarsResult {
         case .success(let cars):
             success(cars)

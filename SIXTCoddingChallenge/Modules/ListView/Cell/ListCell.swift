@@ -86,7 +86,7 @@ class ListCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func configure(with viewModel: ListCellViewModel) {
+    public func configure(with viewModel: CarRowViewModel) {
         nameLabel.text = viewModel.name
         licensePlateLabel.text = viewModel.licensePlate
         let placeHodlerImage = MobileAsset.CarPlaceHolder.getImage()

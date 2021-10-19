@@ -17,7 +17,7 @@ class MapViewModelTests: XCTestCase {
     func testLoadCarsSuccessfully() {
         let dataStore = MockDataStore()
         dataStore.getCarsResult = .success(getMockCarResponse())
-        let viewModel = MapViewModel(dataStore)
+        let viewModel = MapViewModel_v1(dataStore)
         
         // 1
         let promise = expectation(description: "Cars count isn't zero")
@@ -36,7 +36,7 @@ class MapViewModelTests: XCTestCase {
     func testViewDidLoad_whenFetchingSuccessful_shouldHaveReadyState() throws {
         let dataStore = MockDataStore()
         dataStore.getCarsResult = .success(getMockCarResponse())
-        let viewModel = MapViewModel(dataStore)
+        let viewModel = MapViewModel_v1(dataStore)
         var readySateTriggered: Bool = false
         
         viewModel.stateDidUpdate.sink(receiveValue: { state in
@@ -52,7 +52,7 @@ class MapViewModelTests: XCTestCase {
     func test_whenFetchingFails_shouldShowError() throws {
         let dataStore = MockDataStore()
         dataStore.getCarsResult = .failure(NetworkError.RequestFailed)
-        let viewModel = MapViewModel(dataStore)
+        let viewModel = MapViewModel_v1(dataStore)
         var errorSateTriggered: Bool = false
         
         viewModel.stateDidUpdate.sink(receiveValue: { state in

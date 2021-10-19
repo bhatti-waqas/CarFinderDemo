@@ -10,13 +10,13 @@ import Combine
 
 class ListViewController: UIViewController {
     
-    private var viewModel: ListViewModel
+    private var viewModel: CarsListViewModel
     private var rootView: ListView
     private lazy var dataSource = makeDataSource()
-    private var cancellable: [AnyCancellable] = []
+    private var cancellables: [AnyCancellable] = []
+    private let refresh = PassthroughSubject<Void, Never>()
     
-    
-    init(with viewModel: ListViewModel, rootView: ListView) {
+    init(with viewModel: CarsListViewModel, rootView: ListView) {
         self.viewModel = viewModel
         self.rootView = rootView
         super.init(nibName: nil, bundle: nil)
@@ -34,7 +34,11 @@ class ListViewController: UIViewController {
         super.viewDidLoad()
         configureUI()
         bindViewModel()
-        viewModel.load()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        refresh.send(())
     }
     
     private func configureUI() {
@@ -45,21 +49,38 @@ class ListViewController: UIViewController {
     }
     
     private func bindViewModel() {
-        viewModel.stateDidUpdate.sink(receiveValue: { [unowned self] state in
-            self.render(_state: state)
-        }).store(in: &cancellable)
+        cancellables.forEach { $0.cancel() }
+        cancellables.removeAll()
+        let input = CarsListViewModelInput(refresh: refresh.eraseToAnyPublisher())
+        let output = viewModel.transform(input: input)
+        output.sink(receiveValue: {[unowned self] state in
+            self.render(state)
+        }).store(in: &cancellables)
     }
     
-    private func render(_state: ListViewModelState) {
-        switch _state {
-        case .show(let cars):
-            self.showList(with: cars)
-        case .error(let error):
-            handleError(with: error)
+    private func render(_ state: CarsListState) {
+        switch state {
+        case .idle:
+            update(with: [], animate: false)
+        case .loading:
+            rootView.spinner.startAnimating()
+            update(with: [], animate: false)
+        case .noResults:
+            rootView.spinner.stopAnimating()
+            rootView.tableView.refreshControl?.endRefreshing()
+            update(with: [], animate: false)
+        case .failure(let errorMessage):
+            rootView.spinner.stopAnimating()
+            rootView.tableView.refreshControl?.endRefreshing()
+            AlertHandler.showAlert(self, message: errorMessage)
+        case .success(let cars):
+            rootView.spinner.stopAnimating()
+            rootView.tableView.refreshControl?.endRefreshing()
+            update(with: cars, animate: false)
         }
     }
     
-    private func showList(with cars: [ListCellViewModel]) {
+    private func showList(with cars: [CarRowViewModel]) {
         rootView.tableView.refreshControl?.endRefreshing()
         rootView.spinner.stopAnimating()
         self.update(with: cars)
@@ -72,7 +93,7 @@ class ListViewController: UIViewController {
     }
     
     @objc private func refreshList() {
-        viewModel.load()
+        refresh.send(())
     }
 }
 
@@ -82,19 +103,19 @@ fileprivate extension ListViewController {
         case cars
     }
     
-    private func makeDataSource() -> UITableViewDiffableDataSource<Section, ListCellViewModel> {
+    private func makeDataSource() -> UITableViewDiffableDataSource<Section, CarRowViewModel> {
         return UITableViewDiffableDataSource(
             tableView: rootView.tableView,
-            cellProvider: {  tableView, indexPath, listCellViewModel in
+            cellProvider: {  tableView, indexPath, carRowViewModel in
                 let cell: ListCell = self.rootView.tableView.dequeue(for: indexPath)
-                cell.configure(with: listCellViewModel)
+                cell.configure(with: carRowViewModel)
                 return cell
             })
     }
     
-    private func update(with cars: [ListCellViewModel], animate: Bool = false) {
+    private func update(with cars: [CarRowViewModel], animate: Bool = false) {
         Run.onMainThread {
-            var snapshot = NSDiffableDataSourceSnapshot<Section, ListCellViewModel>()
+            var snapshot = NSDiffableDataSourceSnapshot<Section, CarRowViewModel>()
             snapshot.appendSections(Section.allCases)
             snapshot.appendItems(cars, toSection: .cars)
             self.dataSource.apply(snapshot, animatingDifferences: animate)

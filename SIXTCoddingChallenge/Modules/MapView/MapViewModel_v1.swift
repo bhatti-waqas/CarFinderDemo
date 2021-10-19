@@ -2,45 +2,48 @@
 //  MapViewModel.swift
 //  SIXTCoddingChallenge
 //
-//  Created by Waqas Naseem on 10/19/21.
+//  Created by Waqas Naseem on 10/15/21.
 //
 
 import Foundation
 import MapKit
 import Combine
 
-final class MapViewModel: MapViewModelProtocol {
+enum MapViewModelState {
+    case ready
+    case error(error: NetworkError)
+}
+
+public class MapViewModel_v1 {
     
-    private let useCase: CarsUseCaseProtocol
-    private var cancellables: [AnyCancellable] = []
-    private var cars: [SIXTCar]? = nil
+    var dataStore: SIXTCarDataStoreProtocol
+    var cars: [SIXTCar]? = nil
     
-    init(useCase: CarsUseCaseProtocol) {
-        self.useCase = useCase
+    /// define immutable `stateDidUpdate` property so that subscriber can only read from it.
+    private (set) lazy var stateDidUpdate = stateDidUpdateSubject.eraseToAnyPublisher()
+    private let stateDidUpdateSubject = PassthroughSubject<MapViewModelState, Never>()
+    private var cancellable = Set<AnyCancellable>()
+    
+    init(_ dataStore: SIXTCarDataStoreProtocol) {
+        self.dataStore = dataStore
     }
     
-    func transform(input: MapViewModelInput) -> MapViewModelOutput {
-        cancellables.forEach{ $0.cancel() }
-        cancellables.removeAll()
-        let cars = input.load
-            .flatMap({[unowned self] in
-                self.useCase.fetchCars()
-            })
-            .map({ result -> MapCarsState in
-                    switch result {
-                    case .success(let cars) where cars.isEmpty: return .noResults
-                    case .success(let cars):
-                        self.cars = cars
-                        return .ready
-                    case .failure(let error):
-                        return .failure(error.localizedDescription)
-                    }
-            })
-            .replaceError(with: .noResults)
-            .eraseToAnyPublisher()
-        let initialState: MapViewModelOutput = .just(.idle)
-        return Publishers.Merge(initialState, cars)
-            .eraseToAnyPublisher()
+    public func load() {
+//        dataStore.fetchCars(success: { [weak self ] cars in
+//            guard let self = self else { return }
+//            self.cars = cars
+//            self.stateDidUpdateSubject.send(.ready)
+//        }, failure: { error in
+//            self.stateDidUpdateSubject.send(.error(error: error))
+//        })
+    }
+    
+    public func getNumberOfCars() -> Int {
+        return cars?.count ?? 0
+    }
+    
+    func getCar(at index: Int) -> SIXTCar? {
+        return cars?[index]
     }
     
     private func getLongitudes() -> (minLong: Double, maxLong: Double) {
@@ -79,10 +82,4 @@ final class MapViewModel: MapViewModelProtocol {
         }
         return annotations
     }
-    
-//    func viewModels(from cars: [SIXTCar]) -> [CarRowViewModel] {
-//        return cars.map( { .init(id: $0.id, name: $0.name, licensePlate: $0.licensePlate, carImageUrl: $0.carImageUrl) })
-//    }
-    
 }
-

@@ -15,15 +15,15 @@ final class MapViewControllerFactory {
         self.dataStore = dataStore
     }
     
-    func createMapViewController(embeddedInNavigation: Bool = true) -> UIViewController {
-        let viewModel: MapViewModel = MapViewModel(dataStore)
-        let mapView: MapView = MapView()
-        let viewController = MapViewController(with: viewModel, rootView: mapView)
-        let tabImage = MobileAsset.CarPlaceHolder.getImage()
-        viewController.tabBarItem = UITabBarItem(title: StringKey.Generic.MapTabName.get(), image: tabImage, selectedImage: tabImage)
-        viewController.title = StringKey.Generic.MapTabName.get()
-        guard embeddedInNavigation else { return viewController }
-        return UINavigationController(rootViewController: viewController)
-    }
+//    func createMapViewController(embeddedInNavigation: Bool = true) -> UIViewController {
+//        let viewModel: MapViewModel_v1 = MapViewModel_v1(dataStore)
+//        let mapView: MapView = MapView()
+//        let viewController = MapViewController(with: viewModel, rootView: mapView)
+//        let tabImage = MobileAsset.CarPlaceHolder.getImage()
+//        viewController.tabBarItem = UITabBarItem(title: StringKey.Generic.MapTabName.get(), image: tabImage, selectedImage: tabImage)
+//        viewController.title = StringKey.Generic.MapTabName.get()
+//        guard embeddedInNavigation else { return viewController }
+//        return UINavigationController(rootViewController: viewController)
+//    }
     
 }

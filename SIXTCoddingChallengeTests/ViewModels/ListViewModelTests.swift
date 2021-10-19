@@ -17,7 +17,7 @@ class ListViewModelTests: XCTestCase {
     func testLoadCarsSuccessfully() {
         let dataStore = MockDataStore()
         dataStore.getCarsResult = .success(getMockCarResponse())
-        let viewModel = ListViewModel(dataStore)
+        let viewModel = ListViewModel_v1(dataStore)
         
         // 1
         let promise = expectation(description: "Cars count isn't zero")
@@ -37,7 +37,7 @@ class ListViewModelTests: XCTestCase {
     func testViewDidLoad_whenFetchingSuccessful_shouldHaveReadyState() throws {
         let dataStore = MockDataStore()
         dataStore.getCarsResult = .success(getMockCarResponse())
-        let viewModel = ListViewModel(dataStore)
+        let viewModel = ListViewModel_v1(dataStore)
         var readySateTriggered: Bool = false
         
         viewModel.stateDidUpdate.sink(receiveValue: { state in
@@ -53,7 +53,7 @@ class ListViewModelTests: XCTestCase {
     func test_whenFetchingFails_shouldShowError() throws {
         let dataStore = MockDataStore()
         dataStore.getCarsResult = .failure(NetworkError.RequestFailed)
-        let viewModel = ListViewModel(dataStore)
+        let viewModel = ListViewModel_v1(dataStore)
         var errorSateTriggered: Bool = false
         
         viewModel.stateDidUpdate.sink(receiveValue: { state in
