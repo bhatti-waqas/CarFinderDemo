@@ -10,10 +10,10 @@ import Combine
 
 final class CarsListViewModel: CarsListViewModelProtocol {
     
-    private let useCase: CarsUseCaseProtocol
+    private let useCase: CarsUseCase
     private var cancellables: [AnyCancellable] = []
     
-    init(useCase: CarsUseCaseProtocol) {
+    init(useCase: CarsUseCase) {
         self.useCase = useCase
     }
     
@@ -26,16 +26,14 @@ final class CarsListViewModel: CarsListViewModelProtocol {
             })
             .map({ result -> CarsListState in
                     switch result {
-                    case .success(let cars) where cars.isEmpty: return .noResults
                     case .success(let cars): return  .success(self.viewModels(from: cars))
                     case .failure(let error):
                         return .failure(error.localizedDescription)
                     }
             })
-            .replaceError(with: .noResults)
             .eraseToAnyPublisher()
-        let initialState: CarListViewModelOuput = .just(.idle)
-        return Publishers.Merge(initialState, cars)
+        let loading: CarListViewModelOuput = input.refresh.map({_ in .loading}).eraseToAnyPublisher()
+        return Publishers.Merge(loading, cars)
             .eraseToAnyPublisher()
     }
     

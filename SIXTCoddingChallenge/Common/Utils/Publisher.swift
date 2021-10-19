@@ -9,11 +9,7 @@ import Foundation
 import Combine
 
 extension Publisher {
-    
-//    static func empty() -> AnyPublisher<Output, Failure> {
-//        return Empty().eraseToAnyPublisher()
-//    }
-    
+        
     static func just(_ output: Output) -> AnyPublisher<Output, Failure> {
         return Just(output)
             .setFailureType(to: Failure.self)

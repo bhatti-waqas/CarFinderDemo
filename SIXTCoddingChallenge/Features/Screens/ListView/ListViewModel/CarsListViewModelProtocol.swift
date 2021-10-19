@@ -8,15 +8,13 @@
 import Combine
 
 struct CarsListViewModelInput {
-    /// called when a screen becomes visible
+    /// called when view refresh
     let refresh: AnyPublisher<Void, Never>
 }
 
 enum CarsListState: Equatable {
-    case idle
     case loading
     case success([CarRowViewModel])
-    case noResults
     case failure(String)
 }
 

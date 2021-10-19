@@ -14,7 +14,7 @@ class MapViewController: UIViewController {
     private var rootView: MapView
     private var viewModel: MapViewModel
     private var cancellables: [AnyCancellable] = []
-    private let load = PassthroughSubject<Void, Never>()
+    private let appear = PassthroughSubject<Void, Never>()
     
     init(with viewModel: MapViewModel, rootView: MapView) {
         self.viewModel = viewModel
@@ -34,9 +34,12 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-        //viewModel.load()
         self.bindViewModel()
-        self.load.send(())
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        appear.send(())
     }
     
     //MARK: Private Methods
@@ -49,44 +52,30 @@ class MapViewController: UIViewController {
     private func bindViewModel() {
         cancellables.forEach { $0.cancel() }
         cancellables.removeAll()
-        let input = MapViewModelInput(load: load.eraseToAnyPublisher())
+        let input = MapViewModelInput(appear: appear.eraseToAnyPublisher())
         let output = viewModel.transform(input: input)
         output.sink(receiveValue: {[unowned self] state in
             self.render(state)
         }).store(in: &cancellables)
     }
     
-//    private func render(_state: MapViewModelState) {
-//        switch _state {
-//        case .ready:
-//            self.reload()
-//        case .error(let error):
-//            rootView.spinner.stopAnimating()
-//            AlertHandler.showError(self, error: error)
-//        }
-//    }
-    
-    
     private func render(_ state: MapCarsState) {
         switch state {
-        case .idle:
-            print("Idle state")
         case .loading:
-            rootView.spinner.startAnimating()
+            rootView.spinner.isHidden = false
         case .noResults:
-            rootView.spinner.stopAnimating()
+            rootView.spinner.isHidden = true
         case .failure(let errorMessage):
-            rootView.spinner.stopAnimating()
-            AlertHandler.showAlert(self, message: errorMessage)
+            rootView.spinner.isHidden = true
+            presentAlert(errorMessage)
         case .ready:
-            rootView.spinner.stopAnimating()
+            rootView.spinner.isHidden = true
             self.reload()
         }
     }
     
     
     private func reload() {
-
         setupInitialMapRegion()
         self.addAnnotations()
     }

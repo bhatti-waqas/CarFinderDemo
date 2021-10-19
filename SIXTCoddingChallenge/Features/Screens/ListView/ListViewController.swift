@@ -60,36 +60,21 @@ class ListViewController: UIViewController {
     
     private func render(_ state: CarsListState) {
         switch state {
-        case .idle:
-            update(with: [], animate: false)
         case .loading:
-            rootView.spinner.startAnimating()
-            update(with: [], animate: false)
-        case .noResults:
-            rootView.spinner.stopAnimating()
-            rootView.tableView.refreshControl?.endRefreshing()
-            update(with: [], animate: false)
+            rootView.tableView.refreshControl?.beginRefreshing()
         case .failure(let errorMessage):
-            rootView.spinner.stopAnimating()
+            rootView.spinner.isHidden = true
             rootView.tableView.refreshControl?.endRefreshing()
-            AlertHandler.showAlert(self, message: errorMessage)
+            presentAlert(errorMessage)
         case .success(let cars):
-            rootView.spinner.stopAnimating()
-            rootView.tableView.refreshControl?.endRefreshing()
-            update(with: cars, animate: false)
+            self.showList(with: cars)
         }
     }
     
     private func showList(with cars: [CarRowViewModel]) {
         rootView.tableView.refreshControl?.endRefreshing()
-        rootView.spinner.stopAnimating()
+        rootView.spinner.isHidden = true
         self.update(with: cars)
-    }
-    
-    private func handleError(with error: NetworkError) {
-        rootView.tableView.refreshControl?.endRefreshing()
-        rootView.spinner.stopAnimating()
-        AlertHandler.showError(self, error: error)
     }
     
     @objc private func refreshList() {
@@ -102,7 +87,6 @@ fileprivate extension ListViewController {
     enum Section: CaseIterable {
         case cars
     }
-    
     private func makeDataSource() -> UITableViewDiffableDataSource<Section, CarRowViewModel> {
         return UITableViewDiffableDataSource(
             tableView: rootView.tableView,

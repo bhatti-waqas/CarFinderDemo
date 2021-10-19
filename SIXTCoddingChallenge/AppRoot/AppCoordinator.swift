@@ -15,7 +15,6 @@ protocol Coordinator {
 class AppCoordinator: Coordinator {
     
     var tabBarController: UITabBarController
-    //typealias DependencyProvider = Statepr
     private let dependencyProvider: ComponentsFactory
     
     init(tabBarController: UITabBarController, dependencyProvider: ComponentsFactory) {
@@ -27,10 +26,7 @@ class AppCoordinator: Coordinator {
         //create all tabs to show
         //1
         let listViewNavigation = dependencyProvider.carsListNavigationController()
-        //let listFactory = ServiceLocator.listViewControllerFactory()
-        //let listViewController = listFactory.createListViewController()
         //2
-//        let mapFactory = ServiceLocator.mapViewControllerFactory()
         let mapViewController = dependencyProvider.carMapNavigationController()
         tabBarController.viewControllers = [listViewNavigation, mapViewController]
     }

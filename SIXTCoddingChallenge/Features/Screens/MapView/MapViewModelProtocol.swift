@@ -10,11 +10,10 @@ import Combine
 
 struct MapViewModelInput {
     /// called when a screen becomes visible
-    let load: AnyPublisher<Void, Never>
+    let appear: AnyPublisher<Void, Never>
 }
 
 enum MapCarsState: Equatable {
-    case idle
     case loading
     case ready
     case noResults
@@ -23,7 +22,6 @@ enum MapCarsState: Equatable {
 
 
 typealias MapViewModelOutput = AnyPublisher<MapCarsState, Never>
-
 
 protocol MapViewModelProtocol {
     func transform(input: MapViewModelInput) -> MapViewModelOutput

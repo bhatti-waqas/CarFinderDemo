@@ -1,24 +1,19 @@
 //
-//  CarsUseCase.swift
+//  NetworkCarUseCase.swift
 //  SIXTCoddingChallenge
 //
-//  Created by Waqas Naseem on 10/19/21.
+//  Created by Waqas Naseem on 10/20/21.
 //
 
 import Foundation
 import Combine
 
-protocol CarsUseCaseProtocol {
-    func fetchCars() -> AnyPublisher<Result<[SIXTCar], Error>, Never>
-}
-
-final class CarsUseCase: CarsUseCaseProtocol {
+final class NetworkCarsUseCase: CarsUseCase {
+    
     private let networkService: NetworkServiceProtocol
-//    private let imageLoaderService: ImageLoaderServiceType
     
     init(networkService: NetworkServiceProtocol) {
         self.networkService = networkService
-        //self.imageLoaderService = imageLoaderService
     }
     
     func fetchCars() -> AnyPublisher<Result<[SIXTCar], Error>, Never> {

@@ -31,9 +31,7 @@ final class NetworkService: NetworkServiceProtocol {
                 guard 200..<300 ~= response.statusCode else {
                     return Fail(error: NetworkLayerError.dataLoadingError(statusCode: response.statusCode, data: data)).eraseToAnyPublisher()
                 }
-                return Just(data)
-                    .setFailureType(to: Error.self)
-                    .eraseToAnyPublisher()
+                return .just(data)
             }
             .decode(type: T.self, decoder: JSONDecoder())
         .eraseToAnyPublisher()

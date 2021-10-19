@@ -10,7 +10,7 @@ import UIKit
 
 final class ComponentsFactory {
     
-    fileprivate lazy var useCase: CarsUseCaseProtocol = CarsUseCase(networkService: servicesProvider.network)
+    fileprivate lazy var useCase: CarsUseCase = NetworkCarsUseCase(networkService: servicesProvider.network)
 
     private let servicesProvider: ServicesProvider
 
