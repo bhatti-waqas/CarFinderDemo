@@ -62,10 +62,10 @@ class ListViewController: UIViewController {
         switch state {
         case .loading:
             rootView.tableView.refreshControl?.beginRefreshing()
-        case .failure(let errorMessage):
+        case .failure(let error):
             rootView.spinner.isHidden = true
             rootView.tableView.refreshControl?.endRefreshing()
-            presentAlert(errorMessage)
+            presentAlert(error.localizedDescription)
         case .success(let cars):
             self.showList(with: cars)
         }

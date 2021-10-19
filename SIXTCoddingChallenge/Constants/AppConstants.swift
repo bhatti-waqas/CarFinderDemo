@@ -7,6 +7,5 @@
 
 
 struct APIURLs {
-    static let baseURL = "https://cdn.sixt.io/codingtask/cars"
     static let carsUrl = "https://cdn.sixt.io/codingtask/cars"
 }

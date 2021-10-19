@@ -10,69 +10,68 @@ import Combine
 @testable import SIXTCoddingChallenge
 
 class ListViewModelTests: XCTestCase {
-        
-    private var cancellable = Set<AnyCancellable>()
+       
+    private let useCase = CarsUseCaseMock()
+    private var viewModel: CarsListViewModel!
+    private var cancellables: [AnyCancellable] = []
     
+    override func setUp() {
+        viewModel = CarsListViewModel(useCase: useCase)
+    }
+
     // Test successfully  looading of Cars
     func testLoadCarsSuccessfully() {
-        let dataStore = MockDataStore()
-        dataStore.getCarsResult = .success(getMockCarResponse())
-        let viewModel = ListViewModel_v1(dataStore)
+        let refresh = PassthroughSubject<Void, Never>()
+        let input = CarsListViewModelInput(refresh: refresh.eraseToAnyPublisher())
+        var state: CarsListState?
+        let expectation = self.expectation(description: "cars")
+        let cars = getMockCarResponse()
+        let expectedViewModels = viewModel.viewModels(from: cars)
+        useCase.fetchCarsWithReturnValue = .just(.success(cars))
+        viewModel.transform(input: input).sink { value in
+            guard case CarsListState.success = value else { return }
+            state = value
+            expectation.fulfill()
+        }.store(in: &cancellables)
         
-        // 1
-        let promise = expectation(description: "Cars count isn't zero")
-        
-        viewModel.stateDidUpdate.sink(receiveValue: { state in
-            guard case .show(let cars) = state else { return }
-            //guard case .ready = state else { return }
-            XCTAssertTrue(cars.count > 0 , "Cars count shouldn't be zero.")
-            promise.fulfill()
-        }).store(in: &cancellable)
-        //When
-        viewModel.load()
-        wait(for: [promise], timeout: 10)
-        
-    }
-    
-    func testViewDidLoad_whenFetchingSuccessful_shouldHaveReadyState() throws {
-        let dataStore = MockDataStore()
-        dataStore.getCarsResult = .success(getMockCarResponse())
-        let viewModel = ListViewModel_v1(dataStore)
-        var readySateTriggered: Bool = false
-        
-        viewModel.stateDidUpdate.sink(receiveValue: { state in
-            guard case .show(_) = state else { return }
-            readySateTriggered = true
-        }).store(in: &cancellable)
-        
-        //When
-        viewModel.load()
-        XCTAssertTrue(readySateTriggered)
-    }
-    
-    func test_whenFetchingFails_shouldShowError() throws {
-        let dataStore = MockDataStore()
-        dataStore.getCarsResult = .failure(NetworkError.RequestFailed)
-        let viewModel = ListViewModel_v1(dataStore)
-        var errorSateTriggered: Bool = false
-        
-        viewModel.stateDidUpdate.sink(receiveValue: { state in
-            guard case .error(_) = state else { return }
-            errorSateTriggered = true
-        }).store(in: &cancellable)
-        
-        //When
-        viewModel.load()
+        //when
+        refresh.send(())
         // Then
-        XCTAssertTrue(errorSateTriggered)
+        waitForExpectations(timeout: 1.0, handler: nil)
+        XCTAssertEqual(state!, .success(expectedViewModels))
     }
+    
+    func test_hasErrorState_whenDataLoadingIsFailed() {
+        let refresh = PassthroughSubject<Void, Never>()
+        let input = CarsListViewModelInput(refresh: refresh.eraseToAnyPublisher())
+        var state: CarsListState?
+        let expectation = self.expectation(description: "cars")
+        useCase.fetchCarsWithReturnValue = .just(.failure(NetworkLayerError.invalidResponse))
+        viewModel.transform(input: input).sink { value in
+            guard case .failure = value else { return }
+            state = value
+            expectation.fulfill()
+        }.store(in: &cancellables)
+        
+        //when
+        refresh.send(())
+        // Then
+        waitForExpectations(timeout: 1.0, handler: nil)
+        XCTAssertEqual(state!, .failure(NetworkLayerError.invalidResponse))
+    }
+
 }
 
 extension ListViewModelTests {
     
     private func getMockCarResponse() -> [SIXTCar] {
-        let sixtCar = SIXTCar(id: "WMWSW31030T222518", modelIdentifier: "mini", modelName: "MINI", name: "Vanessa", make: "BMW", group: "MINI", color: "midnight_black", series: "MINI", fuelType: "D", fuelLevel: 0.7, transmission: "M", licensePlate: "VO0259", latitude: 48.134557, longitude: 11.576921, innerCleanliness: "REGULAR", carImageUrl: "https://cdn.sixt.io/codingtask/images/mini.png")
-        return [sixtCar]
+        do {
+            let path = Bundle(for: CarsUseCaseTests.self).path(forResource: "Cars", ofType: "json")!
+            let data = try Data(contentsOf: URL(fileURLWithPath: path))
+            return try JSONDecoder().decode([SIXTCar].self, from: data)
+        } catch {
+            fatalError("Error: \(error)")
+        }
     }
 }
 

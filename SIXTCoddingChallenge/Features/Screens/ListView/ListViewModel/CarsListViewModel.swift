@@ -28,7 +28,7 @@ final class CarsListViewModel: CarsListViewModelProtocol {
                     switch result {
                     case .success(let cars): return  .success(self.viewModels(from: cars))
                     case .failure(let error):
-                        return .failure(error.localizedDescription)
+                        return .failure(error as! NetworkLayerError)
                     }
             })
             .eraseToAnyPublisher()
