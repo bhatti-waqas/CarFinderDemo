@@ -20,7 +20,6 @@ enum MapCarsState: Equatable {
     case failure(String)
 }
 
-
 typealias MapViewModelOutput = AnyPublisher<MapCarsState, Never>
 
 protocol MapViewModelProtocol {

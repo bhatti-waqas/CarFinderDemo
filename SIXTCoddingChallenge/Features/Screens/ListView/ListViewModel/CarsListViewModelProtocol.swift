@@ -15,20 +15,8 @@ struct CarsListViewModelInput {
 enum CarsListState: Equatable {
     case loading
     case success([CarRowViewModel])
-    case failure(NetworkLayerError)
+    case failure(String)
 }
-
-extension CarsListState {
-    static func == (lhs: CarsListState, rhs: CarsListState) -> Bool {
-        switch (lhs, rhs) {
-        case (.loading, .loading): return true
-        case (.success(let lhCars), .success(let rhCars)): return lhCars == rhCars
-        case (.failure, .failure): return true
-        default: return false
-        }
-    }
-}
-
 
 typealias CarListViewModelOuput = AnyPublisher<CarsListState, Never>
 

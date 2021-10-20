@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import MapKit
 
-class MapView: UIView  {
+final class MapView: UIView  {
     
     lazy var contentView: UIView = {
         let view = UIView()

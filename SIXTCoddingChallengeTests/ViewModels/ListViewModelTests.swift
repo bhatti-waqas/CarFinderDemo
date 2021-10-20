@@ -57,7 +57,7 @@ class ListViewModelTests: XCTestCase {
         refresh.send(())
         // Then
         waitForExpectations(timeout: 1.0, handler: nil)
-        XCTAssertEqual(state!, .failure(NetworkLayerError.invalidResponse))
+        XCTAssertEqual(state!, .failure(NetworkLayerError.invalidResponse.localizedDescription))
     }
 
 }

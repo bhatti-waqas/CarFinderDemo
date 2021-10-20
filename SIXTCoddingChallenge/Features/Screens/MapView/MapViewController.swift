@@ -9,7 +9,7 @@ import UIKit
 import MapKit
 import Combine
 
-class MapViewController: UIViewController {
+final class MapViewController: UIViewController {
     
     private var rootView: MapView
     private var viewModel: MapViewModel
@@ -34,7 +34,7 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-        self.bindViewModel()
+        bindViewModel()
     }
     
     override func viewDidAppear(_ animated: Bool) {

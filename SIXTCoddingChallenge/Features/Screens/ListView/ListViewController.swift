@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-class ListViewController: UIViewController {
+final class ListViewController: UIViewController {
     
     private var viewModel: CarsListViewModel
     private var rootView: ListView
@@ -62,10 +62,10 @@ class ListViewController: UIViewController {
         switch state {
         case .loading:
             rootView.tableView.refreshControl?.beginRefreshing()
-        case .failure(let error):
+        case .failure(let errorMessage):
             rootView.spinner.isHidden = true
             rootView.tableView.refreshControl?.endRefreshing()
-            presentAlert(error.localizedDescription)
+            presentAlert(errorMessage)
         case .success(let cars):
             self.showList(with: cars)
         }

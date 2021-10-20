@@ -12,7 +12,6 @@ import Combine
 final class MapViewModel: MapViewModelProtocol {
     
     private let useCase: CarsUseCase
-    private var cancellables: [AnyCancellable] = []
     private var cars: [SIXTCar]? = nil
     
     init(useCase: CarsUseCase) {
@@ -20,8 +19,6 @@ final class MapViewModel: MapViewModelProtocol {
     }
     
     func transform(input: MapViewModelInput) -> MapViewModelOutput {
-        cancellables.forEach{ $0.cancel() }
-        cancellables.removeAll()
         let cars = input.appear
             .flatMap({[unowned self] in
                 self.useCase.fetchCars()
@@ -38,6 +35,7 @@ final class MapViewModel: MapViewModelProtocol {
             })
             .replaceError(with: .noResults)
             .eraseToAnyPublisher()
+        
         let loading: MapViewModelOutput = input.appear.map({_ in .loading}).eraseToAnyPublisher()
         return Publishers.Merge(loading, cars)
             .eraseToAnyPublisher()
@@ -79,10 +77,5 @@ final class MapViewModel: MapViewModelProtocol {
         }
         return annotations
     }
-    
-//    func viewModels(from cars: [SIXTCar]) -> [CarRowViewModel] {
-//        return cars.map( { .init(id: $0.id, name: $0.name, licensePlate: $0.licensePlate, carImageUrl: $0.carImageUrl) })
-//    }
-    
 }
 

@@ -15,10 +15,6 @@ struct CarRowViewModel: Equatable {
 }
 
 extension CarRowViewModel: Hashable {
-//    static func == (lhs: CarRowViewModel, rhs: CarRowViewModel) -> Bool {
-//        lhs.id == rhs.id
-//    }
-    
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
     }

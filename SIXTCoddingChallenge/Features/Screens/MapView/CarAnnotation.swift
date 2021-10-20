@@ -8,7 +8,7 @@
 import Foundation
 import MapKit
 
-public class CarAnnotation : NSObject, MKAnnotation {
+final class CarAnnotation : NSObject, MKAnnotation {
     
     public let title: String?
     public let coordinate: CLLocationCoordinate2D
@@ -20,5 +20,4 @@ public class CarAnnotation : NSObject, MKAnnotation {
         self.coordinate = coordinate
         super.init()
     }
-
 }

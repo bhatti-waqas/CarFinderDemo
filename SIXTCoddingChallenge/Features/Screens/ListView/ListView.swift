@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-public class ListView: UIView {
+final class ListView: UIView {
     
     public let tableView: UITableView = {
         let tableView = UITableView()

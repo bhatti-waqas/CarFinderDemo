@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ServicesProvider {
+final class ServicesProvider {
     //depndenices container
     let network: NetworkServiceProtocol
     
