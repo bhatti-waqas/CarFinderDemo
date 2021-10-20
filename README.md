@@ -6,7 +6,7 @@ An iOS app that retrieves and displays our cars both on a map and on a list.
 It follows MVVM Design pattern and is built using combine framework
 
 ## Notes
-
+- Master branch has the final code
 - swift-package-manager is used as dependency manager
 - Libraries used are
 1. SDWebImage for loading images
