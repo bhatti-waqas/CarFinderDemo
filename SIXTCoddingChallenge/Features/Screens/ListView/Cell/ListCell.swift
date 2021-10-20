@@ -9,7 +9,6 @@ import UIKit
 import SnapKit
 
 final class ListCell: UITableViewCell {
-    
     lazy var nameTitleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
@@ -92,5 +91,4 @@ final class ListCell: UITableViewCell {
         let placeHodlerImage = MobileAsset.CarPlaceHolder.getImage()
         carImageView.loadImage(withUrlString: viewModel.carImageUrl, placeholderImage: placeHodlerImage)
     }
-
 }

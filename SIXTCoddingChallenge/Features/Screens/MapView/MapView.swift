@@ -10,7 +10,6 @@ import SnapKit
 import MapKit
 
 final class MapView: UIView  {
-    
     lazy var contentView: UIView = {
         let view = UIView()
         view.backgroundColor = .white

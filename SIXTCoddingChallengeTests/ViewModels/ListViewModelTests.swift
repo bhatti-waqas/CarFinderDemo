@@ -26,7 +26,7 @@ class ListViewModelTests: XCTestCase {
         var state: CarsListState?
         let expectation = self.expectation(description: "cars")
         let cars = getMockCarResponse()
-        let expectedViewModels = viewModel.viewModels(from: cars)
+        let expectedViewModels = viewModels(from: cars)
         useCase.fetchCarsWithReturnValue = .just(.success(cars))
         viewModel.transform(input: input).sink { value in
             guard case CarsListState.success = value else { return }
@@ -71,6 +71,17 @@ extension ListViewModelTests {
             return try JSONDecoder().decode([SIXTCar].self, from: data)
         } catch {
             fatalError("Error: \(error)")
+        }
+    }
+    
+    private func viewModels(from cars: [SIXTCar]) -> [CarRowViewModel] {
+        return cars.map{
+            .init(
+                id: $0.id,
+                name: $0.name,
+                licensePlate: $0.licensePlate,
+                carImageUrl: $0.carImageUrl
+            )
         }
     }
 }

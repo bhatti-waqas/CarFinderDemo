@@ -9,7 +9,6 @@ import UIKit
 import SnapKit
 
 final class ListView: UIView {
-    
     public let tableView: UITableView = {
         let tableView = UITableView()
         tableView.separatorStyle = .none

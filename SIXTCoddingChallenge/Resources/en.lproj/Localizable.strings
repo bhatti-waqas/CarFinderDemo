@@ -10,3 +10,8 @@
 "key_map_tab_name" = "Map";
 "key_name" = "Name: ";
 "key_license_plate" = "License Plate: ";
+//Error
+"key_invalid_request_error" = "Invalid Request";
+"key_invalid_response_error" = "Invalid Response";
+"key_invalid_data_error" = "Invalid Data";
+"key_decoding_error" = "Error Decoding";

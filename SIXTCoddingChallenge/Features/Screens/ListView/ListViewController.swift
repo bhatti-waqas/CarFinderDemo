@@ -9,7 +9,6 @@ import UIKit
 import Combine
 
 final class ListViewController: UIViewController {
-    
     private var viewModel: CarsListViewModel
     private var rootView: ListView
     private lazy var dataSource = makeDataSource()

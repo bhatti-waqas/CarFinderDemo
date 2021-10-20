@@ -9,7 +9,6 @@ import Foundation
 import Combine
 
 final class NetworkCarsUseCase: CarsUseCase {
-    
     private let networkService: NetworkServiceProtocol
     
     init(networkService: NetworkServiceProtocol) {

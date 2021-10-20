@@ -18,8 +18,8 @@ enum CarsListState: Equatable {
     case failure(String)
 }
 
-typealias CarListViewModelOuput = AnyPublisher<CarsListState, Never>
+typealias CarListViewModelOutput = AnyPublisher<CarsListState, Never>
 
 protocol CarsListViewModelProtocol {
-    func transform(input: CarsListViewModelInput) -> CarListViewModelOuput
+    func transform(input: CarsListViewModelInput) -> CarListViewModelOutput
 }

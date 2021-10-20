@@ -9,7 +9,6 @@ import Foundation
 import MapKit
 
 final class CarAnnotation : NSObject, MKAnnotation {
-    
     public let title: String?
     public let coordinate: CLLocationCoordinate2D
     public let imgUrl: String

@@ -17,14 +17,6 @@ extension String {
     func imgView() -> UIImageView {
         return UIImageView(image: UIImage(named: self) ?? UIImage())
     }
-    
-    func nib() -> UINib {
-        return UINib(nibName: self, bundle: nil)
-    }
-    
-    public func escape()->String {
-        return self.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? ""
-    }
 }
 
 //MARK: String+Localizations

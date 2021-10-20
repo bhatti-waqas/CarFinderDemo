@@ -10,7 +10,6 @@ import MapKit
 import Combine
 
 final class MapViewController: UIViewController {
-    
     private var rootView: MapView
     private var viewModel: MapViewModel
     private var cancellables: [AnyCancellable] = []

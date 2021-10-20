@@ -10,7 +10,6 @@ import MapKit
 import Combine
 
 final class MapViewModel: MapViewModelProtocol {
-    
     private let useCase: CarsUseCase
     private var cars: [SIXTCar]? = nil
     

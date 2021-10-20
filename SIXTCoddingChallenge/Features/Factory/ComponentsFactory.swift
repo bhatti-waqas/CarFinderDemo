@@ -11,7 +11,6 @@ import UIKit
 final class ComponentsFactory {
     
     fileprivate lazy var useCase: CarsUseCase = NetworkCarsUseCase(networkService: servicesProvider.network)
-
     private let servicesProvider: ServicesProvider
 
     init(servicesProvider: ServicesProvider = ServicesProvider.defaultProvider()) {
@@ -21,23 +20,19 @@ final class ComponentsFactory {
 
 extension ComponentsFactory {
     
-    func carsListNavigationController() -> UINavigationController {
+    func carsListNavigationController() -> UIViewController {
         let carsListViewModel: CarsListViewModel = CarsListViewModel(useCase: self.useCase)
         let listView: ListView = ListView()
         let viewController = ListViewController(with: carsListViewModel, rootView: listView)
-        let tabImage = MobileAsset.CarPlaceHolder.getImage()
-        viewController.tabBarItem = UITabBarItem(title: StringKey.Generic.ListTabName.get(), image: tabImage, selectedImage: tabImage)
         viewController.title = StringKey.Generic.ListTabName.get()
-        return UINavigationController(rootViewController: viewController)
+        return viewController
     }
     
-    func carMapNavigationController() -> UINavigationController {
+    func carMapNavigationController() -> UIViewController {
         let mapViewModel: MapViewModel = MapViewModel(useCase: self.useCase)
         let mapView: MapView = MapView()
         let viewController = MapViewController(with: mapViewModel, rootView: mapView)
-        let tabImage = MobileAsset.CarPlaceHolder.getImage()
-        viewController.tabBarItem = UITabBarItem(title: StringKey.Generic.ListTabName.get(), image: tabImage, selectedImage: tabImage)
         viewController.title = StringKey.Generic.MapTabName.get()
-        return UINavigationController(rootViewController: viewController)
+        return viewController
     }
 }

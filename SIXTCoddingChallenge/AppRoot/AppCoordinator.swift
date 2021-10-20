@@ -8,13 +8,11 @@
 import UIKit
 
 protocol Coordinator {
-    var tabBarController: UITabBarController { get set } //this is our root controlller
     func start()
 }
 
-class AppCoordinator: Coordinator {
-    
-    var tabBarController: UITabBarController
+final class AppCoordinator: Coordinator {
+    private let tabBarController: UITabBarController
     private let dependencyProvider: ComponentsFactory
     
     init(tabBarController: UITabBarController, dependencyProvider: ComponentsFactory) {
@@ -25,9 +23,17 @@ class AppCoordinator: Coordinator {
     func start() {
         //create all tabs to show
         //1
-        let listViewNavigation = dependencyProvider.carsListNavigationController()
+        let listViewController = dependencyProvider.carsListNavigationController()
+        let tabImage = MobileAsset.CarPlaceHolder.getImage()
+        listViewController.tabBarItem = UITabBarItem(title: StringKey.Generic.ListTabName.get(), image: tabImage, selectedImage: tabImage)
+        
         //2
         let mapViewController = dependencyProvider.carMapNavigationController()
-        tabBarController.viewControllers = [listViewNavigation, mapViewController]
+        mapViewController.tabBarItem = UITabBarItem(title: StringKey.Generic.ListTabName.get(), image: tabImage, selectedImage: tabImage)
+        
+        tabBarController.viewControllers = [
+            UINavigationController(rootViewController: listViewController),
+            UINavigationController(rootViewController: mapViewController)
+        ]
     }
 }

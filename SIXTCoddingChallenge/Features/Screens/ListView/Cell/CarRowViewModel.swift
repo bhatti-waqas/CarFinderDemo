@@ -7,15 +7,9 @@
 
 import Foundation
 
-struct CarRowViewModel: Equatable {
+struct CarRowViewModel: Equatable, Hashable {
     let id: String
     let name: String
     let licensePlate: String
     let carImageUrl: String
-}
-
-extension CarRowViewModel: Hashable {
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
-    }
 }
