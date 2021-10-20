@@ -1,6 +1,9 @@
 # SIXTCoddingChallenge
 
-Demo Project, It follows MVVM Design pattern and is build using combine framework
+Demo Project, 
+
+An iOS app that retrieves and displays our cars both on a map and on a list.
+It follows MVVM Design pattern and is built using combine framework
 
 ## Notes
 
