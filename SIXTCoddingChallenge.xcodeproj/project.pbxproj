@@ -176,7 +176,6 @@
 				77C01F9A271F64DE00100F69 /* Responses */,
 				77C01F91271F5E9D00100F69 /* UnitTests */,
 				77C01F94271F5F1800100F69 /* Mocks */,
-				773BDE83271A3753003702AD /* ViewModels */,
 			);
 			path = SIXTCoddingChallengeTests;
 			sourceTree = "<group>";
@@ -360,6 +359,7 @@
 		77C01F91271F5E9D00100F69 /* UnitTests */ = {
 			isa = PBXGroup;
 			children = (
+				773BDE83271A3753003702AD /* ViewModels */,
 				77C01F92271F5EB300100F69 /* CarsUseCaseTests.swift */,
 			);
 			path = UnitTests;
