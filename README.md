@@ -7,7 +7,7 @@ It follows MVVM Design pattern and is built using combine framework
 
 ## Notes
 
-- SPM is used as dependency manager
+- swift-package-manager is used as dependency manager
 - Libraries used are
 1. SDWebImage for loading images
 2. Snapkit (for applying constraints in code, as we discourage using storyboards)
